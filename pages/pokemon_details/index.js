@@ -1,6 +1,6 @@
 import { PokemonDetails } from "../../views/PokemonDetails";
-import { Page } from "../../components/Page";
+import { PageWrapper } from "../../components/Page";
 
-const PokemonDetailsPage = () => <Page page={PokemonDetails} />;
+const PokemonDetailsPage = () => <PageWrapper page={PokemonDetails} />;
 
 export default PokemonDetailsPage;

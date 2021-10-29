@@ -1,7 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { ContentView } from "./ContentView";
 
-export const Page = ({ page: Page, needQuery = false }) => {
+const PageQuery = ({ page: Page, needQuery = false }) => {
   const { query } = useRouter();
 
   if (!needQuery) {
@@ -9,4 +10,12 @@ export const Page = ({ page: Page, needQuery = false }) => {
   }
 
   return <Page {...query} />;
+};
+
+export const PageWrapper = props => {
+  return (
+    <ContentView>
+      <PageQuery {...props} />
+    </ContentView>
+  );
 };

@@ -1,6 +1,6 @@
 import { PokemonLists } from "../views/PokemonLists";
-import { Page } from "../components/Page";
+import { PageWrapper } from "../components/Page";
 
-const PokemonListsPage = () => <Page page={PokemonLists} />;
+const PokemonListsPage = () => <PageWrapper page={PokemonLists} />;
 
 export default PokemonListsPage;
