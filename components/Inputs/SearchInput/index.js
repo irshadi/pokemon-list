@@ -25,18 +25,14 @@ const SearchInput = ({
 
   // Trigger search on higher level
   React.useEffect(() => {
-    if (!searchValue) {
-      return;
-    }
     onSearch(searchValue);
   }, [searchValue]);
 
   return (
     <InputGroup my="1em">
-      <InputLeftElement
-        pointerEvents="none"
-        children={<Icon as={IoIosSearch} color="pokemon.grey.700" />}
-      />
+      <InputLeftElement pointerEvents="none">
+        <Icon as={IoIosSearch} color="pokemon.grey.700" />
+      </InputLeftElement>
       <Input
         pl="2.5em"
         borderRadius="full"
@@ -45,17 +41,15 @@ const SearchInput = ({
         onChange={e => setDisplayValue(e.target.value)}
       />
       {_hasOnClear && (
-        <InputRightElement
-          children={
-            <IconButton
-              onClick={handleClearSearch}
-              icon={<IoMdCloseCircle />}
-              color="pokemon.grey.700"
-              size="sm"
-              variant="icon-button"
-            />
-          }
-        />
+        <InputRightElement>
+          <IconButton
+            onClick={handleClearSearch}
+            icon={<IoMdCloseCircle />}
+            color="pokemon.grey.700"
+            size="sm"
+            variant="icon-button"
+          />
+        </InputRightElement>
       )}
     </InputGroup>
   );
