@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { NavigationBar } from "./Navigation";
 
 export const ContentView = ({ children }) => {
@@ -12,7 +12,18 @@ export const ContentView = ({ children }) => {
       overflow="auto"
       bgColor="system.white"
     >
-      {children}
+      <Flex
+        w={["100vw", "85vw", "65vw", "35em"]}
+        // bg="red"
+        flexDir="column"
+        align="center"
+        // justify="center"
+        marginRight="auto"
+        marginLeft="auto"
+        minH="inherit"
+      >
+        {children}
+      </Flex>
       <NavigationBar />
     </Box>
   );

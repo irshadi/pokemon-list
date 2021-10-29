@@ -72,6 +72,7 @@ export const colors = {
     "light-grey": "#566373",
     grey: "#454f5c",
     "dark-grey": "#343b45",
-    black: "#22282e"
+    black: "#22282e",
+    disabled: "#eaeaec"
   }
 };
