@@ -4,14 +4,17 @@ import theme from "../theme";
 
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
+import { UserPokemonContextProvider } from "../context/userPokemon";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <ApolloProvider client={client}>
-      <ChakraProvider resetCSS={true} theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </ApolloProvider>
+    <UserPokemonContextProvider>
+      <ApolloProvider client={client}>
+        <ChakraProvider resetCSS={true} theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </ApolloProvider>
+    </UserPokemonContextProvider>
   );
 };
 

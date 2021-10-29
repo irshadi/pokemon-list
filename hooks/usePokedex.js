@@ -1,8 +1,8 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
 
-const POKDEX_ACTION = {
-  SET_PAGE: "SET_PAGE",
+const POKEDEX_ACTION = {
+  SET_POKEDEX_OFFSET: "SET_POKEDEX_OFFSET",
   SET_SEARCH_VALUE: "SET_SEARCH_VALUE",
 
   SET_TOTAL_PAGE: "SET_TOTAL_PAGE"
@@ -10,11 +10,11 @@ const POKDEX_ACTION = {
 
 const pokedexReducer = (state, { type, ...action }) => {
   switch (type) {
-    case POKDEX_ACTION.SET_PAGE:
-      const { page } = action;
+    case POKEDEX_ACTION.SET_POKEDEX_OFFSET:
+      const { pokedexOffset } = action;
       return {
         ...state,
-        page
+        pokedexOffset
       };
 
     default:
@@ -39,12 +39,18 @@ const POKEDEX_QUERY = gql`
   }
 `;
 
+const PAGE_LIMIT = 10;
 export const usePokedex = () => {
-  const [{ searchValue, page }, dispatch] = React.useReducer(pokedexReducer, {
-    searchValue: "",
-    page: 0,
-    totalPage: null
-  });
+  const [{ searchValue, pokedexOffset }, dispatch] = React.useReducer(
+    pokedexReducer,
+    {
+      searchValue: "",
+      pokedexOffset: {
+        previous: 0,
+        next: false
+      }
+    }
+  );
 
   /**
    * 
@@ -53,36 +59,55 @@ export const usePokedex = () => {
   55 items / 10 per page = 6 pages
    */
 
-  // Handle pokedex pagination
-  const setPage = page => dispatch({ type: POKDEX_ACTION.SET_PAGE, page });
+  const {
+    data: pokedexData,
+    loading: isPokedexLoading,
+    fetchMore
+  } = useQuery(POKEDEX_QUERY, {
+    variables: {
+      limit: PAGE_LIMIT,
+      offset: pokedexOffset.previous
+    },
 
-  const { data: pokedexData, loading: isPokedexLoading } = useQuery(
-    POKEDEX_QUERY,
-    {
-      variables: {
-        limit: 10,
-        offset: 11
-      },
-      onCompleted: data => {
-        const {
-          pokemons: { count, prevOffset }
-        } = data;
-        console.log(count, data, "COMPLETE");
-        const totalPage = Math.ceil(count / 10);
+    onCompleted: data => {
+      const {
+        pokemons: { count, prevOffset }
+      } = data;
+      console.log(count, data, "COMPLETE");
+      const totalPage = Math.ceil(count / 10);
 
-        const currentPage = Math.ceil(prevOffset / 10) + 1;
-        console.log({ totalPage, currentPage });
-        return data;
-      }
+      const currentPage = Math.ceil(prevOffset / 10) + 1;
+      console.log({ totalPage, currentPage });
+      return data;
     }
-  );
+  });
+
+  // Handle pokedex pagination
+  const handleClickNextPage = () => {
+    fetchMore({
+      variables: {
+        limit: PAGE_LIMIT,
+        offset: pokedexData.pokemons.nextOffset
+      }
+    });
+  };
+
+  const handleClickPreviousPage = () => {
+    fetchMore({
+      variables: {
+        limit: PAGE_LIMIT,
+        offset: pokedexData.pokemons.prevOffset ?? 0
+      }
+    });
+  };
 
   return {
     pokedexData,
     isPokedexLoading,
 
     // totalPage,
-    page,
-    setPage
+    handleClickPreviousPage,
+    handleClickNextPage
+    // page
   };
 };

@@ -3,9 +3,13 @@ import { Box, Text, Heading, Button } from "@chakra-ui/react";
 import SearchInput from "../../components/Inputs/SearchInput";
 import { ClientContentOnly } from "../../components/ClientContentOnly";
 import { PokedexContent } from "./PokedexContent";
-import { PokedexContextProvider } from "../../context/pokedex";
+import {
+  PokedexContextProvider,
+  usePokedexContext
+} from "../../context/pokedex";
 
 const PokemonLists = () => {
+  const { handleClickPreviousPage, handleClickNextPage } = usePokedexContext();
   return (
     <Box w="100%" h="100%">
       <Box
@@ -22,9 +26,10 @@ const PokemonLists = () => {
         </Text>
       </Box>
       {/* <Text>Pokemon Lists</Text> */}
-      {/* <Box>
-        <Button onClick={() => setPage(page => page + 1)}>Next</Button>
-      </Box> */}
+      <Box>
+        <Button onClick={handleClickPreviousPage}>Prev</Button>
+        <Button onClick={handleClickNextPage}>Next</Button>
+      </Box>
       <ClientContentOnly>
         <PokedexContent />
       </ClientContentOnly>
