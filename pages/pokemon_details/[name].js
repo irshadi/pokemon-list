@@ -1,9 +1,9 @@
 import React from "react";
 import { PageWrapper } from "../../components/Page";
-import { PokemonDetails } from "../../views/PokemonDetails";
+import { PokemonDetailsWrapper } from "../../views/PokemonDetails";
 
 const PokemonDetailsByName = () => (
-  <PageWrapper page={PokemonDetails} needQuery />
+  <PageWrapper page={PokemonDetailsWrapper} needQuery />
 );
 
 export default PokemonDetailsByName;

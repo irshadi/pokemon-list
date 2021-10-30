@@ -13,7 +13,18 @@ export const PokedexItem = ({ id, url, name, image, artwork }) => {
     return id;
   };
 
-  const handleClickPokemon = () => push(`/pokemon_details/${name}`);
+  const handleClickPokemon = () =>
+    push(
+      {
+        pathname: `/pokemon_details/${name}`,
+        asPath: "pokemon_details",
+        query: {
+          image,
+          artwork
+        }
+      },
+      `/pokemon_details/${name}`
+    );
 
   return (
     <Button

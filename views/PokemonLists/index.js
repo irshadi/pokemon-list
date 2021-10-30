@@ -6,6 +6,7 @@ import {
   PokedexContextProvider,
   usePokedexContext
 } from "../../context/pokedex";
+import { PageTitle } from "../../components/Header/PageTitle";
 
 const PokemonLists = () => {
   const {
@@ -18,20 +19,11 @@ const PokemonLists = () => {
   } = usePokedexContext();
   return (
     <Box w="100%" h="100%">
-      <Box
-        w="100%"
-        textAlign="start"
-        p="1em"
-        borderBottom="solid 1px"
-        borderColor="pokemon.grey.100"
-      >
-        <Heading w="100%" color="system.grey">
-          Pokédex
-        </Heading>
-        <Text mt=".5em" fontSize="md" color="system.grey">
-          The Pokédex contains list for every Pokemon in every generation.
-        </Text>
-      </Box>
+      <PageTitle
+        title="Pokédex"
+        label="The Pokédex contains list for every Pokemon in every generation."
+      />
+
       <ClientContentOnly>
         <PokedexContent />
       </ClientContentOnly>
