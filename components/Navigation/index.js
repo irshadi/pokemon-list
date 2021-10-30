@@ -39,7 +39,7 @@ export const NavigationBar = () => {
     >
       <Flex
         bg="white"
-        boxShadow="xl"
+        boxShadow="1px 5px 20px -2px rgba(0,0,0,0.75)"
         w={["97.5vw", "80vw", "60vw", "32.5em"]}
         justify="center"
         borderRadius="full"

@@ -31,9 +31,11 @@ const POKEDEX_QUERY = gql`
       status
       message
       results {
+        id
         url
         name
         image
+        artwork
       }
     }
   }
