@@ -23,7 +23,7 @@ export const PokemonDetailedInformation = () => {
   if (isPokemonDetailsLoading) {
     return "Loading";
   }
-  const { id, name, types, stats, moves } = pokemon;
+  const { id, name, types, stats } = pokemon;
 
   return (
     <Box w="100%" p="1em" bg="system.white">

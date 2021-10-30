@@ -21,6 +21,9 @@ const SELECTED_POKEMON_QUERY = gql`
         move {
           name
         }
+        version_group_details {
+          level_learned_at
+        }
       }
       types {
         type {
