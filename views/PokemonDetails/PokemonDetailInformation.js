@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Flex, Text, Heading, Image } from "@chakra-ui/react";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 import { CheckType, PokemonTypeChips } from "../../components/PokemonTypeChip";
+import { PokemonStats } from "../../components/PokemonStats";
 
 export const PokemonDetailedInformation = () => {
   const {
@@ -48,21 +49,23 @@ export const PokemonDetailedInformation = () => {
           >
             {name}
           </Text>
-          <Flex w="100%" justify="center" py="1em">
+          <Flex w="100%" justify="center" p="1em">
             {types.map(({ type: { name: typeName } }, index) => (
               <PokemonTypeChips key={`${index}-${typeName}`} type={typeName} />
             ))}
           </Flex>
 
-          <Flex>
+          <Box p="1em" px="3em">
             {stats.map(({ stat: { name }, base_stat: statValue }, index) => {
               return (
-                <Text key={`${index}-${name}`}>
-                  {name}: {statValue}
-                </Text>
+                <PokemonStats
+                  key={`${name}-${index}`}
+                  stat={name}
+                  value={statValue}
+                />
               );
             })}
-          </Flex>
+          </Box>
         </Box>
       </Flex>
     </Box>

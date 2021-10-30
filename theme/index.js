@@ -3,6 +3,7 @@ import { globalStyles } from "./style";
 import { textStyles } from "./components/text";
 import { inputStyles } from "./components/input";
 import { buttonStyles } from "./components/buttons";
+import { progressStyles } from "./components/progress";
 
 const theme = extendTheme({
   ...globalStyles,
@@ -10,7 +11,8 @@ const theme = extendTheme({
     Heading: {},
     Text: textStyles,
     Button: buttonStyles,
-    Input: inputStyles
+    Input: inputStyles,
+    Progress: progressStyles
   }
 });
 
