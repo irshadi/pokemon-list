@@ -1,8 +1,16 @@
 import React from "react";
-import { Box, Flex, Text, Heading, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Image,
+  Button,
+  useDisclosure
+} from "@chakra-ui/react";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
-import { CheckType, PokemonTypeChips } from "../../components/PokemonTypeChip";
+import { PokemonTypeChips } from "../../components/PokemonTypeChip";
 import { PokemonStats } from "../../components/PokemonStats";
+import { PokemonMovesModal } from "../../components/PokemonMovesModal";
 
 export const PokemonDetailedInformation = () => {
   const {
@@ -10,15 +18,17 @@ export const PokemonDetailedInformation = () => {
     isPokemonDetailsLoading,
     artwork
   } = usePokemonDetailsContext();
+  const { isOpen, onToggle, onClose } = useDisclosure();
 
   if (isPokemonDetailsLoading) {
     return "Loading";
   }
-  const { name, types, stats } = pokemon;
-  console.log(pokemon, "<<<");
+  const { id, name, types, stats, moves } = pokemon;
+
   return (
     <Box w="100%" p="1em" bg="system.white">
-      <Flex w="100%%" justify="center" flexDir="column" align="center">
+      <PokemonMovesModal isOpen={isOpen} onClose={onClose} />
+      <Flex w="100%" justify="center" flexDir="column" align="center">
         <Image
           src={artwork}
           h="12.5em"
@@ -66,6 +76,18 @@ export const PokemonDetailedInformation = () => {
               );
             })}
           </Box>
+
+          <Flex justify="center" py="1em">
+            <Button
+              onClick={onToggle}
+              bgColor="pokemon.red.500"
+              _hover={{
+                bgColor: "pokemon.red.300"
+              }}
+            >
+              See Move List
+            </Button>
+          </Flex>
         </Box>
       </Flex>
     </Box>
