@@ -23,14 +23,20 @@ export const PokemonDetailedInformation = () => {
   if (isPokemonDetailsLoading) {
     return "Loading";
   }
-  const { id, name, types, stats } = pokemon;
+  const {
+    id,
+    name,
+    types,
+    stats,
+    sprites: { front_default: image }
+  } = pokemon;
 
   return (
     <Box w="100%" p="1em" bg="system.white">
       <PokemonMovesModal isOpen={isOpen} onClose={onClose} />
       <Flex w="100%" justify="center" flexDir="column" align="center">
         <Image
-          src={artwork}
+          src={image}
           h="12.5em"
           w="12.5em"
           bg="pokemon.grey.100"

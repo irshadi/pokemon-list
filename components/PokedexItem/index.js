@@ -17,11 +17,7 @@ export const PokedexItem = ({ id, url, name, image, artwork }) => {
     push(
       {
         pathname: `/pokemon_details/${name}`,
-        asPath: "pokemon_details",
-        query: {
-          image,
-          artwork
-        }
+        asPath: "pokemon_details"
       },
       `/pokemon_details/${name}`
     );

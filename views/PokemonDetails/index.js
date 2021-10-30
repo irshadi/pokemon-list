@@ -23,10 +23,8 @@ const PokemonDetails = () => {
 };
 
 export const PokemonDetailsWrapper = ({ name }) => {
-  const { query } = useRouter();
-
   return (
-    <PokemonDetailsContextProvider pokemon={name} {...query}>
+    <PokemonDetailsContextProvider pokemon={name}>
       <PokemonDetails />
     </PokemonDetailsContextProvider>
   );

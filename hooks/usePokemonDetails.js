@@ -6,6 +6,9 @@ const SELECTED_POKEMON_QUERY = gql`
     pokemon(name: $name) {
       id
       name
+      sprites {
+        front_default
+      }
       stats {
         stat {
           name
