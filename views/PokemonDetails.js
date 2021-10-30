@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
-export const PokemonDetails = () => {
-  return <Box>Pokemon Details</Box>;
+export const PokemonDetails = ({ name }) => {
+  return <Box>Pokemon Details {name}</Box>;
 };
