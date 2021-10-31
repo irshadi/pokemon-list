@@ -18,9 +18,9 @@ const PokemonDetails = () => {
 
   const title = !id && !name ? "Loading..." : `${generateId(id)} - ${name}`;
   return (
-    <Box w="100%">
-      <PageTitle title={title} />
-      <ClientContentOnly>
+    <Box w="100%" h="inherit">
+      <PageTitle title={title} h="10%" hasBorder />
+      <ClientContentOnly h="90%" bg="system.white">
         <CatchPokemonContextProvider pokemon={name}>
           <PokemonDetailedInformation />
         </CatchPokemonContextProvider>

@@ -16,7 +16,7 @@ export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
         textTransform="capitalize"
         w="100%"
         color="system.grey"
-        fontSize={["xl", "3xl"]}
+        fontSize={["xl", "xl", "xl", "3xl"]}
       >
         {title}
       </Heading>
@@ -24,7 +24,7 @@ export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
         mt={[".25em", ".5em"]}
         fontSize="md"
         color="system.grey"
-        fontSize={["sm", "lg"]}
+        fontSize={["sm", "md", "md", "lg"]}
       >
         {label}
       </Text>

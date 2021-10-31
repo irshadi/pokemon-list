@@ -16,6 +16,7 @@ import { PokemonMovesModal } from "../../components/PokemonMovesModal";
 import { CatchPokemonModal } from "../../components/CatchPokemonModal";
 import { useCatchPokemonContext } from "../../context/catchPokemon";
 import { isEmpty } from "lodash";
+import { generateId } from "../../helper";
 
 export const PokemonDetailedInformation = () => {
   const {
@@ -48,6 +49,7 @@ export const PokemonDetailedInformation = () => {
   }
 
   const {
+    id,
     name,
     types,
     stats,
@@ -55,14 +57,14 @@ export const PokemonDetailedInformation = () => {
   } = pokemon;
 
   const imgSize = {
-    h: ["6em", "7.5em", "12.5em"],
-    w: ["6em", "7.5em", "12.5em"],
+    h: ["8.5em", "8.5em", "8.5em", "12.5em"],
+    w: ["8.5em", "8.5em", "8.5em", "12.5em"],
     p: [".5em", "1em"],
-    mb: ["-2.5em", "-4.5em", "-7.5em"]
+    mb: ["-4.5em", "-6em", "-4.75em", "-7.5em"]
   };
 
   return (
-    <Box w="100%" p="1em" bg="system.white">
+    <Box w="100%" h="inherit" p="1em">
       <PokemonMovesModal isOpen={isMoveModalOpen} onClose={onCloseMoveModal} />
       <CatchPokemonModal />
       <Flex w="100%" justify="center" flexDir="column" align="center">
@@ -84,23 +86,34 @@ export const PokemonDetailedInformation = () => {
           bg="white"
           borderRadius="md"
           boxShadow="md"
-          pt={["2.5em", "4.5em", "8.5em"]}
+          pt={["5em", "5.5em", "5em", "8.5em"]}
         >
           <Text
-            fontSize={["lg", "xl", "2xl"]}
+            fontSize={["md", "lg", "lg", "xl"]}
+            fontWeight="800"
+            textTransform="capitalize"
+            color="pokemon.grey.300"
+          >
+            {generateId(id)}
+          </Text>
+          <Text
+            fontSize={["lg", "xl", "xl", "2xl"]}
             fontWeight="800"
             textTransform="capitalize"
             color="system.grey"
           >
             {name}
           </Text>
-          <Flex w="100%" justify="center" p="1em">
+          <Flex w="100%" justify="center" p={[".25em", ".5em", ".25em", "1em"]}>
             {types.map(({ type: { name: typeName } }, index) => (
               <PokemonTypeChips key={`${index}-${typeName}`} type={typeName} />
             ))}
           </Flex>
 
-          <Box p="1em" px={["1.5em", "3em"]}>
+          <Box
+            p={["1em", "1em", ".5em", "1em"]}
+            px={["1.5em", "2em", "2em", "3em"]}
+          >
             {stats.map(({ stat: { name }, base_stat: statValue }, index) => {
               return (
                 <PokemonStats
@@ -112,7 +125,7 @@ export const PokemonDetailedInformation = () => {
             })}
           </Box>
 
-          <Flex justify="center" py="1em">
+          <Flex justify="center" py={["1em", "1em", ".75em", "1em"]}>
             <Button
               onClick={onToggleMoveModal}
               bgColor="pokemon.red.500"
