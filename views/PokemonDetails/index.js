@@ -1,7 +1,6 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import { PageTitle } from "../../components/Header/PageTitle";
-import { useRouter } from "next/router";
 import {
   PokemonDetailsContextProvider,
   usePokemonDetailsContext

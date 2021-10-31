@@ -36,7 +36,7 @@ export const useCatchPokemon = name => {
 
         _setMessage(message => {
           const copyMessage = [...message];
-          copyMessage.push(`${name} found !`);
+          copyMessage.push(`A wild ${name} has appeared!`);
           return copyMessage;
         });
         resolve();
@@ -54,7 +54,7 @@ export const useCatchPokemon = name => {
         _setPhase(CATCH_POKEMON_PHASE.CATCH_POKEMON);
         _setMessage(message => {
           const copyMessage = [...message];
-          copyMessage.push(`Attempting to catch ${name}.`);
+          copyMessage.push(`Trainer use pokeball.`);
           return copyMessage;
         });
       }, 2000);

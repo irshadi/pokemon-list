@@ -11,8 +11,12 @@ import {
 } from "@chakra-ui/react";
 import { useCatchPokemonContext } from "../../context/catchPokemon";
 import { CATCH_POKEMON_PHASE } from "../../hooks/useCatchPokemon";
+import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 
 export const HuntPokemon = () => {
+  const {
+    pokemonDetails: { pokemon: { name: pokemon } = {} }
+  } = usePokemonDetailsContext();
   const {
     phase,
     message,
@@ -22,6 +26,16 @@ export const HuntPokemon = () => {
   } = useCatchPokemonContext();
   const hasError = Boolean(errorMessage);
   const isPokemonCatched = phase === CATCH_POKEMON_PHASE.SUCCESS_CATCH_POKEMON;
+
+  const HUNT_POKEMON_PHASE_COPY = {
+    [CATCH_POKEMON_PHASE.LOOKING_FOR_POKEMON]: `Looking for ${pokemon}`,
+    [CATCH_POKEMON_PHASE.FIND_POKEMON]: `A wild ${pokemon} has appeared`,
+    [CATCH_POKEMON_PHASE.FAILED_TO_FIND_POKEMON]: `${pokemon} is nowhere to be found`,
+
+    [CATCH_POKEMON_PHASE.CATCH_POKEMON]: `Attempting to catch ${pokemon}!`,
+    [CATCH_POKEMON_PHASE.SUCCESS_CATCH_POKEMON]: `${pokemon} catched!`,
+    [CATCH_POKEMON_PHASE.FAILED_TO_CATCH_POKEMON]: `Failed to catch ${pokemon}`
+  };
 
   return (
     <React.Fragment>
@@ -38,7 +52,7 @@ export const HuntPokemon = () => {
         </Flex>
         <Box w="inherit" mt="1em">
           <Heading textTransform="capitalize" fontSize="md" textAlign="center">
-            {phase.replace("_", " ")}
+            {HUNT_POKEMON_PHASE_COPY[phase]}
           </Heading>
           <Box
             w="inherit"
