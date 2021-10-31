@@ -9,7 +9,8 @@ import { NavigationButton } from "./NavigationButton";
 import { useRouter } from "next/router";
 
 export const NavigationBar = () => {
-  const { asPath: currentPath } = useRouter();
+  const { asPath: currentPath, ...rest } = useRouter();
+  console.log({ currentPath, ...rest });
   const navigationMenu = [
     {
       label: "My Pokemons",
@@ -47,7 +48,11 @@ export const NavigationBar = () => {
         {navigationMenu.map((props, index) => (
           <NavigationButton
             key={index}
-            isSelected={currentPath === props.url}
+            isSelected={
+              index === navigationMenu.length - 1
+                ? currentPath.includes(props.url)
+                : currentPath === props.url
+            }
             {...props}
           />
         ))}
