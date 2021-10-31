@@ -70,6 +70,13 @@ export const useUserPokemon = () => {
     });
   };
 
+  const checkPokemon = pokemon => {
+    const foundIndex = pokemons.findIndex(
+      ({ name: _pokemon }) => _pokemon === pokemon
+    );
+    return foundIndex !== -1;
+  };
+
   const getInitialPokemon = React.useCallback(() => {
     const pokemons = JSON.parse(
       localStorage.getItem(POKEMON_STORAGE_CONFIG.MY_POKEMON)
@@ -86,6 +93,7 @@ export const useUserPokemon = () => {
     pokemons,
     handleSavePokemon,
     handleDeletePokemon,
-    clearAllPokemon
+    clearAllPokemon,
+    checkPokemon
   };
 };

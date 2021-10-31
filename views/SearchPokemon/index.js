@@ -7,13 +7,13 @@ import { PokemonDetailsContextProvider } from "../../context/pokemonDetails";
 
 export const SearchPokemon = () => {
   return (
-    <Box>
+    <Box w="100%" h="inherit">
       <PageTitle
         title="Search Pokemon"
         label="The Pokedex contains detailed stats for every create from the Pokemon games. You can search by pokemon name."
       />
 
-      <ClientContentOnly mt={["-1.25em", "-.5em"]}>
+      <ClientContentOnly h="82.5%" bg="system.white">
         <SearchResult />
       </ClientContentOnly>
     </Box>

@@ -93,13 +93,19 @@ export const PokemonCard = ({
         name={name}
         nickName={nickName}
       />
-      <Image src={img} w="5em" h="5em" bg="system.white" rounded="full" />
+      <Image
+        src={img}
+        w={["5.5em", "5.5em", "5em", "7.5em"]}
+        h={["5.5em", "5.5em", "5em", "7.5em"]}
+        bg="system.white"
+        rounded="full"
+      />
 
       <Box align="center" mt=".5em" w="100%">
         <Flex align="center" w="100%" justify="center">
           <Icon
             as={CgPokemon}
-            color={isCatched ? "pokemon.red.500" : "system.white"}
+            color={isCatched ? "pokemon.red.500" : "pokemon.grey.200"}
             mr=".15em"
           />
           <Text

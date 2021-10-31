@@ -1,9 +1,11 @@
 import React from "react";
-import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Icon } from "@chakra-ui/react";
 import { SearchInput } from "../../components/Inputs";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 import { PokemonCard } from "../../components/PokemonCard";
 import { useRouter } from "next/router";
+import { IoIosHelpCircle } from "react-icons/io";
+import { useUserPokemonContext } from "../../context/userPokemon";
 
 const EmptyContent = ({ title, label, ...props }) => {
   return (
@@ -18,6 +20,12 @@ const EmptyContent = ({ title, label, ...props }) => {
       boxShadow="lg"
       {...props}
     >
+      <Icon
+        as={IoIosHelpCircle}
+        color="pokemon.grey.700"
+        fontSize="5em"
+        mb={[".5em"]}
+      />
       <Text fontSize="lg" fontWeight="600" color="system.grey">
         {title}
       </Text>
@@ -29,6 +37,7 @@ const EmptyContent = ({ title, label, ...props }) => {
 };
 
 export const SearchResult = () => {
+  const { checkPokemon } = useUserPokemonContext();
   const {
     pokemonDetails: { pokemon = {} },
     isPokemonDetailsLoading,
@@ -40,7 +49,13 @@ export const SearchResult = () => {
 
   return (
     <Box>
-      <Box px="1em" borderBottom="solid 1px" borderColor="pokemon.grey.100">
+      <Box
+        borderBottom="solid 1px"
+        borderColor="pokemon.grey.100"
+        bg="white"
+        pt="1em"
+        px="1em"
+      >
         <SearchInput
           onSearch={setSearchValue}
           isSearching={isPokemonDetailsLoading}
@@ -48,13 +63,14 @@ export const SearchResult = () => {
         />
       </Box>
 
-      <Box p={[".5em", "1em", "2em"]} bg="system.white" h="inherit">
+      <Box p={["1em", "1em", ".5em", "2em"]} h="inherit">
         {isSearchedPokemonFound ? (
           <PokemonCard
             {...pokemon}
             isSearchingPokemon
             h="20em"
             justify="center"
+            isCatched={checkPokemon(pokemon.name)}
           >
             <Button
               mt="1em"
