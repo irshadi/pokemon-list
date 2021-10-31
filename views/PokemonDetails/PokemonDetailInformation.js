@@ -64,10 +64,16 @@ export const PokemonDetailedInformation = () => {
   };
 
   return (
-    <Box w="100%" h="inherit" p="1em">
+    <Box w="100%" h="100%" p="1em">
       <PokemonMovesModal isOpen={isMoveModalOpen} onClose={onCloseMoveModal} />
       <CatchPokemonModal />
-      <Flex w="100%" justify="center" flexDir="column" align="center">
+      <Flex
+        w="100%"
+        h="inherit"
+        justify="center"
+        flexDir="column"
+        align="center"
+      >
         <Image
           src={image}
           fallback={<SkeletonCircle {...imgSize} />}
