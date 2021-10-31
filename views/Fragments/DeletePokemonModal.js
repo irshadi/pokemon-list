@@ -38,7 +38,9 @@ export const DeletePokemonModal = ({
         </Button>
         <Button
           colorScheme="red"
-          onClick={isDeletingAll ? clearAllPokemon : handleDeletePokemon}
+          onClick={
+            isDeletingAll ? clearAllPokemon : () => handleDeletePokemon(index)
+          }
         >
           Release
         </Button>

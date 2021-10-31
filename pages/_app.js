@@ -8,13 +8,13 @@ import { UserPokemonContextProvider } from "../context/userPokemon";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <UserPokemonContextProvider>
-      <ApolloProvider client={client}>
-        <ChakraProvider resetCSS={true} theme={theme}>
+    <ChakraProvider resetCSS={true} theme={theme}>
+      <UserPokemonContextProvider>
+        <ApolloProvider client={client}>
           <Component {...pageProps} />
-        </ChakraProvider>
-      </ApolloProvider>
-    </UserPokemonContextProvider>
+        </ApolloProvider>
+      </UserPokemonContextProvider>
+    </ChakraProvider>
   );
 };
 
