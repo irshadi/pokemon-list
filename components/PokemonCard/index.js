@@ -7,11 +7,11 @@ import {
   Heading,
   Button,
   Icon,
-  IconButton,
   Menu,
   MenuButton,
   MenuList,
-  MenuItem
+  MenuItem,
+  useDisclosure
 } from "@chakra-ui/react";
 import { PokemonTypeChips } from "../PokemonTypeChip";
 import { generateId } from "../../helper";
@@ -19,9 +19,9 @@ import { CgPokemon } from "react-icons/cg";
 import { IoIosRemoveCircle, IoIosInformationCircle } from "react-icons/io";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { DeletePokemonModal } from "../../views/Fragments/DeletePokemonModal";
 
-const ActionMenuPokemonCard = ({ selectedPokemon, ...props }) => {
-  const { push } = useRouter();
+const ActionMenuPokemonCard = ({ onClickInfo, onClickDelete, ...props }) => {
   return (
     <Menu {...props}>
       <MenuButton
@@ -41,11 +41,15 @@ const ActionMenuPokemonCard = ({ selectedPokemon, ...props }) => {
         <MenuItem
           icon={<IoIosInformationCircle />}
           color="pokemon.grey.800"
-          onClick={() => push(`/pokemon_details/${selectedPokemon}`)}
+          onClick={onClickInfo}
         >
           Information
         </MenuItem>
-        <MenuItem icon={<IoIosRemoveCircle />} color="pokemon.red.700">
+        <MenuItem
+          icon={<IoIosRemoveCircle />}
+          color="pokemon.red.700"
+          onClick={onClickDelete}
+        >
           Release
         </MenuItem>
       </MenuList>
@@ -54,14 +58,22 @@ const ActionMenuPokemonCard = ({ selectedPokemon, ...props }) => {
 };
 
 export const PokemonCard = ({
+  index,
   id,
   name,
   nickName,
   sprites: { front_default: img },
   types,
-  isCatched = true
+  isCatched = true,
+  isSearchingPokemon = false
 }) => {
-  const hasNickname = Boolean(nickName);
+  const {
+    isOpen: isReleasePokemonModalOpen,
+    onClose: onCloseReleasePokemonModal,
+    onToggle: onToggleReleasePokemonModal
+  } = useDisclosure();
+  const { push } = useRouter();
+
   return (
     <Flex
       bg="white"
@@ -72,6 +84,13 @@ export const PokemonCard = ({
       align="center"
       pos="relative"
     >
+      <DeletePokemonModal
+        isOpen={isReleasePokemonModalOpen}
+        onClose={onCloseReleasePokemonModal}
+        index={index}
+        name={name}
+        nickName={nickName}
+      />
       <Image src={img} w="5em" h="5em" bg="system.white" rounded="full" />
 
       <Box align="center" mt=".5em" w="100%">
@@ -100,7 +119,8 @@ export const PokemonCard = ({
           {name}
         </Text>
       </Box>
-      {hasNickname && (
+
+      {!isSearchingPokemon && (
         <Text
           w="100%"
           textAlign="center"
@@ -117,7 +137,12 @@ export const PokemonCard = ({
           <PokemonTypeChips key={`${index}-${typeName}`} type={typeName} />
         ))}
       </Flex>
-      {hasNickname && <ActionMenuPokemonCard selectedPokemon={name} />}
+      {!isSearchingPokemon && (
+        <ActionMenuPokemonCard
+          onClickInfo={() => push(`/pokemon_details/${name}`)}
+          onClickDelete={onToggleReleasePokemonModal}
+        />
+      )}
     </Flex>
   );
 };

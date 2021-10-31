@@ -24,6 +24,13 @@ export const useUserPokemon = () => {
     syncToLocalStorage(copyPokemons);
   };
 
+  const handleDeletePokemon = index => {
+    const copyPokemons = [...pokemons];
+    copyPokemons.splice(index, 1);
+    setPokemons(copyPokemons);
+    syncToLocalStorage(copyPokemons);
+  };
+
   const getInitialPokemon = React.useCallback(() => {
     const pokemons = JSON.parse(
       localStorage.getItem(POKEMON_STORAGE_CONFIG.MY_POKEMON)
@@ -39,6 +46,7 @@ export const useUserPokemon = () => {
   return {
     pokemons,
     handleSavePokemon,
+    handleDeletePokemon,
     clearAllPokemon
   };
 };

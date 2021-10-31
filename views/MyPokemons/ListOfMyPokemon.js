@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { useUserPokemonContext } from "../../context/userPokemon";
 import { PokemonCard } from "../../components/PokemonCard";
 
