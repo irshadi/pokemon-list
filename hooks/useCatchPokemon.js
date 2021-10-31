@@ -12,7 +12,9 @@ export const CATCH_POKEMON_PHASE = {
 };
 
 export const useCatchPokemon = name => {
-  const [phase, _setPhase] = React.useState(CATCH_POKEMON_PHASE.SAVE_POKEMON);
+  const [phase, _setPhase] = React.useState(
+    CATCH_POKEMON_PHASE.LOOKING_FOR_POKEMON
+  );
   const [message, _setMessage] = React.useState([]);
   const [errorMessage, _setErrorMessage] = React.useState("");
 

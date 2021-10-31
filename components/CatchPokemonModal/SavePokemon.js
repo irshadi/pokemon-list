@@ -36,7 +36,10 @@ export const SavePokemon = () => {
         <Button
           ml=".25em"
           isDisabled={!nickName}
-          onClick={() => handleSavePokemon({ ...pokemon, nickName })}
+          onClick={() => {
+            handleSavePokemon({ ...pokemon, nickName });
+            onCloseCatchPokemonModal();
+          }}
         >
           Save
         </Button>
