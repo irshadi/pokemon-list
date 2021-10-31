@@ -11,7 +11,7 @@ export const SavePokemon = () => {
     pokemonDetails: { pokemon }
   } = usePokemonDetailsContext();
   const { onCloseCatchPokemonModal } = useCatchPokemonContext();
-  const { handleClickSavePokemon } = useUserPokemonContext();
+  const { handleSavePokemon } = useUserPokemonContext();
 
   return (
     <React.Fragment>
@@ -36,7 +36,7 @@ export const SavePokemon = () => {
         <Button
           ml=".25em"
           isDisabled={!nickName}
-          onClick={() => handleClickSavePokemon({ ...pokemon, nickName })}
+          onClick={() => handleSavePokemon({ ...pokemon, nickName })}
         >
           Save
         </Button>

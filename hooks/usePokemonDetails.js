@@ -1,4 +1,3 @@
-import React from "react";
 import { useQuery, gql } from "@apollo/client";
 
 const SELECTED_POKEMON_QUERY = gql`

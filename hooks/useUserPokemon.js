@@ -10,7 +10,13 @@ export const useUserPokemon = () => {
       JSON.stringify(data)
     );
   };
-  const handleClickSavePokemon = savedPokemon => {
+
+  const clearAllPokemon = () => {
+    setPokemons([]);
+    localStorage.setItem(POKEMON_STORAGE_CONFIG.MY_POKEMON, JSON.stringify([]));
+  };
+
+  const handleSavePokemon = savedPokemon => {
     // TODOS: Handle duplicate by nickname
 
     const copyPokemons = [...pokemons, savedPokemon];
@@ -23,8 +29,8 @@ export const useUserPokemon = () => {
       localStorage.getItem(POKEMON_STORAGE_CONFIG.MY_POKEMON)
     );
 
-    console.log(pokemons);
-  }, []);
+    setPokemons(pokemons);
+  }, [setPokemons]);
 
   React.useEffect(() => {
     getInitialPokemon();
@@ -32,6 +38,7 @@ export const useUserPokemon = () => {
 
   return {
     pokemons,
-    handleClickSavePokemon
+    handleSavePokemon,
+    clearAllPokemon
   };
 };
