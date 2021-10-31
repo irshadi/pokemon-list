@@ -5,7 +5,8 @@ import {
   InputLeftElement,
   InputRightElement,
   Icon,
-  IconButton
+  IconButton,
+  Spinner
 } from "@chakra-ui/react";
 import { IoMdCloseCircle, IoIosSearch } from "react-icons/io";
 import { useSearchInput } from "../../../hooks/useSearchInput";
@@ -42,13 +43,17 @@ const SearchInput = ({
       />
       {_hasOnClear && (
         <InputRightElement>
-          <IconButton
-            onClick={handleClearSearch}
-            icon={<IoMdCloseCircle />}
-            color="pokemon.grey.700"
-            size="sm"
-            variant="icon-button"
-          />
+          {isSearching ? (
+            <Spinner color="pokemon.grey.700" size="sm" />
+          ) : (
+            <IconButton
+              onClick={handleClearSearch}
+              icon={<IoMdCloseCircle />}
+              color="pokemon.grey.700"
+              size="sm"
+              variant="icon-button"
+            />
+          )}
         </InputRightElement>
       )}
     </InputGroup>

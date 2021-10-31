@@ -9,8 +9,8 @@ import { NavigationButton } from "./NavigationButton";
 import { useRouter } from "next/router";
 
 export const NavigationBar = () => {
-  const { asPath: currentPath, ...rest } = useRouter();
-  console.log({ currentPath, ...rest });
+  const { asPath: currentPath } = useRouter();
+
   const navigationMenu = [
     {
       label: "My Pokemons",

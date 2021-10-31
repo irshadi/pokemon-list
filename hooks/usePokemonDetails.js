@@ -1,3 +1,5 @@
+import React from "react";
+import isEmpty from "lodash/isEmpty";
 import { useQuery, gql } from "@apollo/client";
 
 const SELECTED_POKEMON_QUERY = gql`
@@ -39,15 +41,37 @@ const SELECTED_POKEMON_QUERY = gql`
 `;
 
 export const usePokemonDetails = pokemonName => {
-  const { data: pokemonDetails = {}, loading: isPokemonDetailsLoading } =
-    useQuery(SELECTED_POKEMON_QUERY, {
-      variables: {
-        name: pokemonName
-      }
-    });
+  const hasName = Boolean(pokemonName);
+  const [searchValue, setSearchValue] = React.useState("");
+  const {
+    data: pokemonDetails = {},
+    loading: isPokemonDetailsLoading,
+    refetch
+  } = useQuery(SELECTED_POKEMON_QUERY, {
+    variables: {
+      name: pokemonName
+    },
+    skip: hasName ? !pokemonName : !searchValue
+  });
+
+  const isSearchResultEmpty = isEmpty(pokemonDetails) && Boolean(searchValue);
+  const isSearchEmpty = isEmpty(pokemonDetails) && Boolean(!searchValue);
+
+  React.useEffect(() => {
+    if (hasName) {
+      return;
+    }
+    refetch({ name: searchValue });
+  }, [searchValue]);
 
   return {
     pokemonDetails,
-    isPokemonDetailsLoading
+    isPokemonDetailsLoading,
+    refetch,
+
+    setSearchValue,
+
+    isSearchEmpty,
+    isSearchResultEmpty
   };
 };

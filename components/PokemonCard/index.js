@@ -65,7 +65,8 @@ export const PokemonCard = ({
   sprites: { front_default: img },
   types,
   isCatched = true,
-  isSearchingPokemon = false
+  isSearchingPokemon = false,
+  ...styleProps
 }) => {
   const {
     isOpen: isReleasePokemonModalOpen,
@@ -83,6 +84,7 @@ export const PokemonCard = ({
       flexDir="column"
       align="center"
       pos="relative"
+      {...styleProps}
     >
       <DeletePokemonModal
         isOpen={isReleasePokemonModalOpen}

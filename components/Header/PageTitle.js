@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
 
-export const PageTitle = ({ title, label, children }) => {
+export const PageTitle = ({ title, label, children, hasBorder }) => {
   return (
     <Box
       w="100%"
       textAlign="start"
       p="1em"
-      borderBottom="solid 1px"
+      borderBottom={hasBorder ? "solid 1px" : "none"}
       borderColor="pokemon.grey.100"
     >
       <Heading textTransform="capitalize" w="100%" color="system.grey">
