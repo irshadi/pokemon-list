@@ -16,6 +16,14 @@ export const useUserPokemon = () => {
   const clearAllPokemon = () => {
     setPokemons([]);
     localStorage.setItem(POKEMON_STORAGE_CONFIG.MY_POKEMON, JSON.stringify([]));
+    toast({
+      title: "All pokemons are released",
+      position: "top-right",
+      description: `You released all of your pokemons.`,
+      status: "success",
+      duration: 3000,
+      isClosable: true
+    });
   };
 
   const handleSavePokemon = savedPokemon => {
@@ -43,7 +51,7 @@ export const useUserPokemon = () => {
     setPokemons(copyPokemons);
     syncToLocalStorage(copyPokemons);
     toast({
-      title: "Pokemon Saved",
+      title: "Pokemon saved",
       position: "top-right",
       description: `Successfully catched and saved ${nickName}.`,
       status: "success",
@@ -61,7 +69,7 @@ export const useUserPokemon = () => {
     syncToLocalStorage(copyPokemons);
 
     toast({
-      title: "Pokemon Released",
+      title: "Pokemon released",
       position: "top-right",
       description: `${nickName} released.`,
       status: "success",

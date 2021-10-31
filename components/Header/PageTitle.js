@@ -1,15 +1,18 @@
 import React from "react";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 
 export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
   return (
-    <Box
+    <Flex
       w="100%"
       textAlign="start"
       p="1em"
       borderBottom={hasBorder ? "solid 1px" : "none"}
       borderColor="pokemon.grey.100"
       h="17.5%"
+      flexDir="column"
+      align="start"
+      justify="center"
       {...props}
     >
       <Heading
@@ -29,6 +32,6 @@ export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
         {label}
       </Text>
       {children}
-    </Box>
+    </Flex>
   );
 };

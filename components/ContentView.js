@@ -19,14 +19,10 @@ export const ContentView = ({ children }) => {
         align="center"
         marginRight="auto"
         marginLeft="auto"
-        // bg="red"
       >
         {children}
       </Flex>
-      <NavigationBar
-        h={["5em", "6.5em"]}
-        //  bg="blue"
-      />
+      <NavigationBar h={["5em", "6.5em"]} />
     </Box>
   );
 };

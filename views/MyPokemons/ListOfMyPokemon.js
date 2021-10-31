@@ -10,7 +10,12 @@ export const ListOfMyPokemons = () => {
     <Grid
       p="1em"
       gap={4}
-      templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+      templateColumns={[
+        "repeat(1, 1fr)",
+        "repeat(2, 1fr)",
+        "repeat(2, 1fr)",
+        "repeat(3, 1fr)"
+      ]}
     >
       {pokemons.map((props, index) => {
         return (

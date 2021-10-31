@@ -53,7 +53,6 @@ export const SearchResult = () => {
         borderBottom="solid 1px"
         borderColor="pokemon.grey.100"
         bg="white"
-        pt="1em"
         px="1em"
       >
         <SearchInput
