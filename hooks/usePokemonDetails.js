@@ -53,7 +53,6 @@ export const usePokemonDetails = pokemonName => {
     },
     skip: hasName ? !pokemonName : !searchValue
   });
-  console.log(isPokemonDetailsLoading, "<<<");
 
   const isSearchResultEmpty =
     !isPokemonDetailsLoading && isEmpty(pokemonDetails) && Boolean(searchValue);
