@@ -13,7 +13,7 @@ export const SearchPokemon = () => {
         label="The Pokedex contains detailed stats for every create from the Pokemon games. You can search by pokemon name."
       />
 
-      <ClientContentOnly>
+      <ClientContentOnly mt={["-1.25em", "-.5em"]}>
         <SearchResult />
       </ClientContentOnly>
     </Box>

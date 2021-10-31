@@ -25,33 +25,37 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
       `/pokemon_details/${name}`
     );
 
+  const imgStyle = {
+    p: [],
+    w: ["4em", "5em"],
+    h: ["4em", "5em"]
+  };
+
   return (
     <Skeleton isLoaded={!isLoading}>
       <Button
         w="100%"
         onClick={handleClickPokemon}
         display="flex"
-        h="6.5em"
+        h={["5em", "5.5em", "6.5em"]}
         borderRadius=".25em"
         overflow="hidden"
         align="center"
         boxShadow="md"
-        p="1em"
-        px="1.5em"
+        p={[".5em", "1em"]}
+        px={["1.5em"]}
         variant="transparent"
         bg="white"
         _hover={{ bg: "pokemon.red.200" }}
       >
         <Image
           src={image}
-          fallback={<SkeletonCircle w="5em" h="5em" />}
-          boxSize="5em"
-          w="5em"
-          h="5em"
+          fallback={<SkeletonCircle {...imgStyle} />}
           bg="pokemon.grey.100"
           objectPosition="center"
           objectFit="contain"
           rounded="full"
+          {...imgStyle}
         />
 
         <Flex w="80%" align="center">
@@ -70,14 +74,14 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
           </Box>
           <Image
             src={artwork}
-            opacity="0.1"
-            w="10em"
-            h="10em"
+            opacity="0.15"
+            w={["5em", "8em", "10em"]}
+            h={["5em", "8em", "10em"]}
             objectPosition="left"
             objectFit="cover"
             pos="relative"
             top="0"
-            right="-10"
+            right={["-2", "-10"]}
           />
         </Flex>
       </Button>

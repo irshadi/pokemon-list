@@ -1,9 +1,20 @@
 import React from "react";
 import { Flex, Image } from "@chakra-ui/react";
 
-export const Header = () => {
+export const Header = ({ ...props }) => {
   return (
-    <Flex h="4.5em" boxShadow="md" w="100%" justify="start" align="center">
+    <Flex
+      boxShadow="md"
+      w="100%"
+      justify="start"
+      align="center"
+      pos="absolute"
+      top="0"
+      left="0"
+      right="0"
+      marginX="auto"
+      {...props}
+    >
       <Image
         src="/img/logo.png"
         h="70%"

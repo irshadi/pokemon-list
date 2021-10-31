@@ -54,6 +54,13 @@ export const PokemonDetailedInformation = () => {
     sprites: { front_default: image }
   } = pokemon;
 
+  const imgSize = {
+    h: ["6em", "7.5em", "12.5em"],
+    w: ["6em", "7.5em", "12.5em"],
+    p: [".5em", "1em"],
+    mb: ["-2.5em", "-4.5em", "-7.5em"]
+  };
+
   return (
     <Box w="100%" p="1em" bg="system.white">
       <PokemonMovesModal isOpen={isMoveModalOpen} onClose={onCloseMoveModal} />
@@ -61,20 +68,15 @@ export const PokemonDetailedInformation = () => {
       <Flex w="100%" justify="center" flexDir="column" align="center">
         <Image
           src={image}
-          fallback={
-            <SkeletonCircle h="12.5em" w="12.5em" p="1em" mb="-7.5em" />
-          }
-          h="12.5em"
-          w="12.5em"
+          fallback={<SkeletonCircle {...imgSize} />}
           bg="pokemon.grey.100"
           borderRadius="full"
           objectFit="cover"
           objectPosition="center"
-          p="1em"
           border="solid 5px"
           borderColor="white"
-          mb="-7.5em"
           zIndex={2}
+          {...imgSize}
         />
         <Box
           w="100%"
@@ -82,10 +84,10 @@ export const PokemonDetailedInformation = () => {
           bg="white"
           borderRadius="md"
           boxShadow="md"
-          pt="8.5em"
+          pt={["2.5em", "4.5em", "8.5em"]}
         >
           <Text
-            fontSize="2xl"
+            fontSize={["lg", "xl", "2xl"]}
             fontWeight="800"
             textTransform="capitalize"
             color="system.grey"
@@ -98,7 +100,7 @@ export const PokemonDetailedInformation = () => {
             ))}
           </Flex>
 
-          <Box p="1em" px="3em">
+          <Box p="1em" px={["1.5em", "3em"]}>
             {stats.map(({ stat: { name }, base_stat: statValue }, index) => {
               return (
                 <PokemonStats

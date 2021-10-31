@@ -16,17 +16,26 @@ export const PokemonLists = () => {
     page: currentPage,
     isPokedexCalled
   } = usePokedexContext();
+
   return (
-    <Box w="100%" h="100%">
+    <Box w="100%" h="inherit">
       <PageTitle
         title="Pokédex"
         label="The Pokédex contains list for every Pokemon in every generation."
+        hasBorder
       />
 
-      <ClientContentOnly>
+      <ClientContentOnly h="70%" overflowY="scroll">
         <PokedexContent />
       </ClientContentOnly>
-      <Flex p="1em" align="center">
+
+      <Flex
+        p="1em"
+        align="center"
+        h="12.5%"
+        borderTop="solid 1px"
+        borderColor="pokemon.grey.100"
+      >
         <Flex w="50%">
           {isPokedexCalled && (
             <Text fontSize="md" color="system.grey" fontWeight="600">

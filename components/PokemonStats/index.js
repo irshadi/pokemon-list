@@ -17,14 +17,14 @@ export const PokemonStats = ({ stat, value }) => {
   const { label, color } = STAT_MAP[stat.toUpperCase()];
   return (
     <Flex w="100%" justify="space-between" textAlign="start" align="center">
-      <Text w="30%" fontWeight="500" textTransform="uppercase">
+      <Text w={["35%", "30%"]} fontWeight="500" textTransform="uppercase">
         {label}
       </Text>
-      <Text w="10%" fontWeight="800">
+      <Text w={"10%"} fontWeight="800">
         {value}
       </Text>
       <Progress
-        w="60%"
+        w={["55%", "60%"]}
         colorScheme={color}
         value={value}
         rounded="full"

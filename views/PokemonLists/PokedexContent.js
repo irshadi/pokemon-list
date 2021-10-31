@@ -15,10 +15,10 @@ export const PokedexContent = () => {
   const pokedexData = isPokedexLoading ? loadingPlaceholder : results;
 
   return (
-    <Box w="100%" h="60vh" overflowY="scroll" bg="system.white">
-      <Grid templateColumns="repeat(1fr)" gap={3} p="1em">
-        {pokedexData.map(props => (
-          <PokedexItem {...props} />
+    <Box w="100%" bg="system.white">
+      <Grid templateColumns="repeat(1fr)" gap={3} p={[".5em", "1em"]}>
+        {pokedexData.map((props, index) => (
+          <PokedexItem key={`${props?.id}-${index}`} {...props} />
         ))}
       </Grid>
     </Box>

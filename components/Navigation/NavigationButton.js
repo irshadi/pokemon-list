@@ -1,6 +1,6 @@
 import React from "react";
 import _Link from "next/link";
-import { Link, Icon, Text, Button } from "@chakra-ui/react";
+import { Link, Icon, Text, Flex } from "@chakra-ui/react";
 
 export const NavigationButton = ({
   url,
@@ -10,7 +10,7 @@ export const NavigationButton = ({
 }) => {
   return (
     <Link as={_Link} href={url}>
-      <Button
+      <Flex
         h="inherit"
         variant="transparent"
         opacity={isSelected ? 1 : 0.5}
@@ -31,16 +31,16 @@ export const NavigationButton = ({
           h={[8, 9]}
         />
         <Text
-          mt={[".75em", ".5em", ".15em"]}
+          mt={[".35em", ".5em", ".15em"]}
           fontWeight="bold"
           color={isSelected ? "pokemon.red.500" : "pokemon.grey.700"}
           textShadow="base"
-          fontSize={["xs", "s"]}
+          fontSize={[".7em", "s"]}
           lineHeight={[1, 1.5]}
         >
           {label}
         </Text>
-      </Button>
+      </Flex>
     </Link>
   );
 };

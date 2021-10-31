@@ -39,7 +39,7 @@ export const SearchResult = () => {
   const { push } = useRouter();
 
   return (
-    <Box h="75vh" overflow="hidden">
+    <Box>
       <Box px="1em" borderBottom="solid 1px" borderColor="pokemon.grey.100">
         <SearchInput
           onSearch={setSearchValue}
@@ -48,7 +48,7 @@ export const SearchResult = () => {
         />
       </Box>
 
-      <Box p="2em" bg="system.white" h="inherit">
+      <Box p={[".5em", "1em", "2em"]} bg="system.white" h="inherit">
         {isSearchedPokemonFound ? (
           <PokemonCard
             {...pokemon}

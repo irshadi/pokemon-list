@@ -8,7 +8,7 @@ import {
 import { NavigationButton } from "./NavigationButton";
 import { useRouter } from "next/router";
 
-export const NavigationBar = () => {
+export const NavigationBar = ({ ...props }) => {
   const { asPath: currentPath } = useRouter();
 
   const navigationMenu = [
@@ -31,12 +31,14 @@ export const NavigationBar = () => {
 
   return (
     <Flex
+      bg="transparent"
       pos="absolute"
       bottom="0"
-      h="6.5em"
       w="100%"
       justify="center"
-      p=".75em"
+      pb=".5em"
+      px=".75em"
+      {...props}
     >
       <Flex
         bg="white"
@@ -44,6 +46,7 @@ export const NavigationBar = () => {
         w={["97.5vw", "80vw", "60vw", "32.5em"]}
         justify="center"
         borderRadius="full"
+        px={[".75em"]}
       >
         {navigationMenu.map((props, index) => (
           <NavigationButton
