@@ -16,7 +16,7 @@ const PokemonDetails = () => {
     pokemonDetails: { pokemon: { id = "", name = "" } = {} }
   } = usePokemonDetailsContext();
 
-  const title = `#${generateId(id)} - ${name}`;
+  const title = `${generateId(id)} - ${name}`;
   return (
     <Box w="100%">
       <PageTitle title={title} label="" />

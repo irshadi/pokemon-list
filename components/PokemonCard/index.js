@@ -109,7 +109,7 @@ export const PokemonCard = ({
             color="pokemon.grey.800"
             ml=".15em"
           >
-            #{generateId(id)}
+            {generateId(id)}
           </Text>
         </Flex>
         <Text
