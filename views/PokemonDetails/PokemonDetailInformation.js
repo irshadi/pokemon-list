@@ -5,7 +5,9 @@ import {
   Text,
   Image,
   Button,
-  useDisclosure
+  useDisclosure,
+  SkeletonCircle,
+  Spinner
 } from "@chakra-ui/react";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 import { PokemonTypeChips } from "../../components/PokemonTypeChip";
@@ -13,14 +15,14 @@ import { PokemonStats } from "../../components/PokemonStats";
 import { PokemonMovesModal } from "../../components/PokemonMovesModal";
 import { CatchPokemonModal } from "../../components/CatchPokemonModal";
 import { useCatchPokemonContext } from "../../context/catchPokemon";
+import { isEmpty } from "lodash";
 
 export const PokemonDetailedInformation = () => {
   const {
     pokemonDetails: { pokemon },
     isPokemonDetailsLoading
   } = usePokemonDetailsContext();
-  const { isCatchPokemonModalOpen, onToggleCatchPokemonModal } =
-    useCatchPokemonContext();
+  const { onToggleCatchPokemonModal } = useCatchPokemonContext();
 
   const {
     isOpen: isMoveModalOpen,
@@ -29,11 +31,23 @@ export const PokemonDetailedInformation = () => {
   } = useDisclosure();
 
   if (isPokemonDetailsLoading) {
-    return "Loading";
+    return (
+      <Flex w="inherit" p="1em" justify="center" align="center">
+        <Spinner
+          thickness="4px"
+          emptyColor="system.white"
+          color="pokemon.grey.500"
+          size="xl"
+        />
+      </Flex>
+    );
+  }
+
+  if (isEmpty(pokemon)) {
+    return null;
   }
 
   const {
-    id,
     name,
     types,
     stats,
@@ -47,6 +61,9 @@ export const PokemonDetailedInformation = () => {
       <Flex w="100%" justify="center" flexDir="column" align="center">
         <Image
           src={image}
+          fallback={
+            <SkeletonCircle h="12.5em" w="12.5em" p="1em" mb="-7.5em" />
+          }
           h="12.5em"
           w="12.5em"
           bg="pokemon.grey.100"

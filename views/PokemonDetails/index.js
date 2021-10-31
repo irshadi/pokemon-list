@@ -16,12 +16,14 @@ const PokemonDetails = () => {
     pokemonDetails: { pokemon: { id = "", name = "" } = {} }
   } = usePokemonDetailsContext();
 
-  const title = `${generateId(id)} - ${name}`;
+  const title = !id && !name ? "Loading..." : `${generateId(id)} - ${name}`;
   return (
     <Box w="100%">
-      <PageTitle title={title} label="" />
+      <PageTitle title={title} />
       <ClientContentOnly>
-        <PokemonDetailedInformation />
+        <CatchPokemonContextProvider pokemon={name}>
+          <PokemonDetailedInformation />
+        </CatchPokemonContextProvider>
       </ClientContentOnly>
     </Box>
   );
@@ -30,9 +32,7 @@ const PokemonDetails = () => {
 export const PokemonDetailsWrapper = ({ name }) => {
   return (
     <PokemonDetailsContextProvider pokemon={name}>
-      <CatchPokemonContextProvider pokemon={name}>
-        <PokemonDetails />
-      </CatchPokemonContextProvider>
+      <PokemonDetails />
     </PokemonDetailsContextProvider>
   );
 };
