@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
 import { useUserPokemonContext } from "../../context/userPokemon";
 import { PokemonCard } from "../../components/PokemonCard";
 
@@ -7,7 +7,7 @@ export const ListOfMyPokemons = () => {
   const { pokemons } = useUserPokemonContext();
 
   return (
-    <Box p="1em" bg="system.white">
+    <Grid p="1em" gap={4} bg="system.white" templateColumns="repeat(3, 1fr)">
       {pokemons.map((props, index) => {
         return (
           <PokemonCard
@@ -17,6 +17,6 @@ export const ListOfMyPokemons = () => {
           />
         );
       })}
-    </Box>
+    </Grid>
   );
 };

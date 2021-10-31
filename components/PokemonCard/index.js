@@ -1,11 +1,59 @@
 import React from "react";
-import { Box, Flex, Text, Image, Heading, Icon } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Image,
+  Heading,
+  Button,
+  Icon,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem
+} from "@chakra-ui/react";
 import { PokemonTypeChips } from "../PokemonTypeChip";
 import { generateId } from "../../helper";
 import { CgPokemon } from "react-icons/cg";
+import { IoIosRemoveCircle, IoIosInformationCircle } from "react-icons/io";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { useRouter } from "next/router";
+
+const ActionMenuPokemonCard = ({ selectedPokemon, ...props }) => {
+  const { push } = useRouter();
+  return (
+    <Menu {...props}>
+      <MenuButton
+        mt="1em"
+        as={Button}
+        aria-label="More"
+        variant="outline"
+        border="solid 1px"
+        borderColor="pokemon.grey.500"
+        colorScheme="grey"
+        icon={<BsThreeDotsVertical />}
+        variant="transparent"
+      >
+        More
+      </MenuButton>
+      <MenuList>
+        <MenuItem
+          icon={<IoIosInformationCircle />}
+          color="pokemon.grey.800"
+          onClick={() => push(`/pokemon_details/${selectedPokemon}`)}
+        >
+          Information
+        </MenuItem>
+        <MenuItem icon={<IoIosRemoveCircle />} color="pokemon.red.700">
+          Release
+        </MenuItem>
+      </MenuList>
+    </Menu>
+  );
+};
 
 export const PokemonCard = ({
-  index,
   id,
   name,
   nickName,
@@ -13,74 +61,63 @@ export const PokemonCard = ({
   types,
   isCatched = true
 }) => {
-  const hasIndex = Boolean(index + 1);
+  const hasNickname = Boolean(nickName);
   return (
     <Flex
-      w="100%"
-      h="7.5em"
       bg="white"
-      px="1em"
       borderRadius=".25em"
       boxShadow="md"
+      py="1em"
+      flexDir="column"
+      align="center"
+      pos="relative"
     >
-      <Flex w="50%" align="center">
-        <Heading color="system.grey" mr=".25em">
-          {index + 1}.
-        </Heading>
-        <Image src={img} w="5em" h="5em" bg="system.white" rounded="full" />
-        <Box ml="1em">
-          <Flex align="center">
-            <Text
-              textTransform="capitalize"
-              fontWeight="700"
-              fontSize="xl"
-              color="system.grey"
-              mr=".5em"
-            >
-              {name}
-            </Text>
-            <Icon
-              as={CgPokemon}
-              color={isCatched ? "pokemon.red.500" : "system.white"}
-            />
-          </Flex>
-          <Flex w="100%" align="center">
-            <Text
-              fontWeight="500"
-              fontSize="lg"
-              color="pokemon.grey.800"
-              mr=".25em"
-            >
-              Nickname:
-            </Text>
-            <Text
-              fontStyle="italic"
-              fontWeight="500"
-              fontSize="lg"
-              color="pokemon.grey.800"
-            >
-              {nickName}
-            </Text>
-          </Flex>
-          <Flex pt=".5em" ml="-.5em">
-            {types.map(({ type: { name: typeName } }, index) => (
-              <PokemonTypeChips key={`${index}-${typeName}`} type={typeName} />
-            ))}
-          </Flex>
-        </Box>
-      </Flex>
-      <Box w="50%">
-        <Flex w="100%" justify="flex-end">
+      <Image src={img} w="5em" h="5em" bg="system.white" rounded="full" />
+
+      <Box align="center" mt=".5em" w="100%">
+        <Flex align="center" w="100%" justify="center">
+          <Icon
+            as={CgPokemon}
+            color={isCatched ? "pokemon.red.500" : "system.white"}
+            mr=".15em"
+          />
           <Text
             fontStyle="italic"
-            fontWeight="800"
-            fontSize="2xl"
-            color="pokemon.grey.200"
+            fontWeight="700"
+            fontSize="md"
+            color="pokemon.grey.800"
+            ml=".15em"
           >
             #{generateId(id)}
           </Text>
         </Flex>
+        <Text
+          textTransform="capitalize"
+          fontWeight="700"
+          fontSize="xl"
+          color="system.grey"
+        >
+          {name}
+        </Text>
       </Box>
+      {hasNickname && (
+        <Text
+          w="100%"
+          textAlign="center"
+          fontStyle="italic"
+          fontWeight="500"
+          fontSize="lg"
+          color="pokemon.grey.800"
+        >
+          {nickName}
+        </Text>
+      )}
+      <Flex pt="1em">
+        {types.map(({ type: { name: typeName } }, index) => (
+          <PokemonTypeChips key={`${index}-${typeName}`} type={typeName} />
+        ))}
+      </Flex>
+      {hasNickname && <ActionMenuPokemonCard selectedPokemon={name} />}
     </Flex>
   );
 };
