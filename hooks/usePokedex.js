@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import client from "../apollo-client";
 
 const POKEDEX_ACTION = {
   SET_POKEDEX_OFFSET: "SET_POKEDEX_OFFSET",
@@ -65,7 +66,8 @@ export const usePokedex = () => {
     variables: {
       limit: PAGE_LIMIT,
       offset: pokedexOffset.previous
-    }
+    },
+    notifyOnNetworkStatusChange: true
   });
 
   const {
@@ -106,6 +108,12 @@ export const usePokedex = () => {
       }
     });
   };
+
+  React.useEffect(() => {
+    return () => {
+      client.resetStore();
+    };
+  }, [client]);
 
   return {
     pokedexData,

@@ -8,7 +8,12 @@ export const MyPokemons = () => {
   return (
     <Box w="100%">
       <PageTitle title="My Pokemon" label="" />
-      <ClientContentOnly>
+      <ClientContentOnly
+        bg="system.white"
+        maxH="80vh"
+        pb="6.5em"
+        overflowY="auto"
+      >
         <ListOfMyPokemons />
       </ClientContentOnly>
     </Box>

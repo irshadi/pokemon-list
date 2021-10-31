@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Heading, Flex, Button } from "@chakra-ui/react";
+import { Box, Text, Flex, Button } from "@chakra-ui/react";
 import { ClientContentOnly } from "../../components/ClientContentOnly";
 import { PokedexContent } from "./PokedexContent";
 import {
@@ -8,9 +8,8 @@ import {
 } from "../../context/pokedex";
 import { PageTitle } from "../../components/Header/PageTitle";
 
-const PokemonLists = () => {
+export const PokemonLists = () => {
   const {
-    pokedexData: { prevOffset },
     handleClickPreviousPage,
     handleClickNextPage,
     totalPage,

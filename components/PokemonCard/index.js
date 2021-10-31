@@ -4,7 +4,6 @@ import {
   Flex,
   Text,
   Image,
-  Heading,
   Button,
   Icon,
   Menu,
