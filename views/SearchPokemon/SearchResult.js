@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, Button } from "@chakra-ui/react";
 import { SearchInput } from "../../components/Inputs";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 import { PokemonCard } from "../../components/PokemonCard";
+import { useRouter } from "next/router";
 
 const EmptyContent = ({ title, label, ...props }) => {
   return (
@@ -31,10 +32,11 @@ export const SearchResult = () => {
   const {
     pokemonDetails: { pokemon = {} },
     isPokemonDetailsLoading,
-    isSearchEmpty,
+    isSearchedPokemonFound,
     isSearchResultEmpty,
     setSearchValue
   } = usePokemonDetailsContext();
+  const { push } = useRouter();
 
   return (
     <Box h="75vh" overflow="hidden">
@@ -47,20 +49,27 @@ export const SearchResult = () => {
       </Box>
 
       <Box p="2em" bg="system.white" h="inherit">
-        {isSearchResultEmpty ? (
-          <EmptyContent
-            title={"Can not find any result"}
-            label={"Pokemon doesn't exist"}
-            h="20em"
-          />
-        ) : isSearchEmpty ? null : (
+        {isSearchedPokemonFound ? (
           <PokemonCard
             {...pokemon}
             isSearchingPokemon
             h="20em"
             justify="center"
+          >
+            <Button
+              mt="1em"
+              onClick={() => push(`/pokemon_details/${pokemon.name}`)}
+            >
+              View Pokemon
+            </Button>
+          </PokemonCard>
+        ) : isSearchResultEmpty ? (
+          <EmptyContent
+            title={"Can not find any result"}
+            label={"Pokemon doesn't exist"}
+            h="20em"
           />
-        )}
+        ) : null}
       </Box>
     </Box>
   );

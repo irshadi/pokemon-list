@@ -66,6 +66,7 @@ export const PokemonCard = ({
   types,
   isCatched = true,
   isSearchingPokemon = false,
+  children,
   ...styleProps
 }) => {
   const {
@@ -145,6 +146,7 @@ export const PokemonCard = ({
           onClickDelete={onToggleReleasePokemonModal}
         />
       )}
+      {children}
     </Flex>
   );
 };

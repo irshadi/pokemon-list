@@ -54,9 +54,14 @@ export const usePokemonDetails = pokemonName => {
     skip: hasName ? !pokemonName : !searchValue
   });
 
-  const isSearchResultEmpty = isEmpty(pokemonDetails) && Boolean(searchValue);
-  const isSearchEmpty = isEmpty(pokemonDetails) && Boolean(!searchValue);
+  const isSearchResultEmpty =
+    !isPokemonDetailsLoading && isEmpty(pokemonDetails) && Boolean(searchValue);
+  const isSearchedPokemonFound =
+    !isEmpty(pokemonDetails) &&
+    Boolean(searchValue) &&
+    !isPokemonDetailsLoading;
 
+  // Trigger Effect for searching pokemon
   React.useEffect(() => {
     if (hasName) {
       return;
@@ -71,7 +76,7 @@ export const usePokemonDetails = pokemonName => {
 
     setSearchValue,
 
-    isSearchEmpty,
+    isSearchedPokemonFound,
     isSearchResultEmpty
   };
 };
