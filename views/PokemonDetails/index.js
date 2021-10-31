@@ -26,7 +26,7 @@ const PokemonDetails = () => {
 export const PokemonDetailsWrapper = ({ name }) => {
   return (
     <PokemonDetailsContextProvider pokemon={name}>
-      <CatchPokemonContextProvider>
+      <CatchPokemonContextProvider pokemon={name}>
         <PokemonDetails />
       </CatchPokemonContextProvider>
     </PokemonDetailsContextProvider>

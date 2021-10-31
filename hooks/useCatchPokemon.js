@@ -7,11 +7,12 @@ export const CATCH_POKEMON_PHASE = {
   FIND_POKEMON: "FIND_POKEMON",
   FAILED_TO_FIND_POKEMON: "FAILED_TO_FIND_POKEMON",
   CATCH_POKEMON: "CATCH_POKEMON",
-  SAVE_POKEMON: "SAVE_POKEMON",
-  FAILED_TO_CATCH_POKEMON: "FAILED_TO_CATCH_POKEMON"
+  SUCCESS_CATCH_POKEMON: "SUCCESS_CATCH_POKEMON",
+  FAILED_TO_CATCH_POKEMON: "FAILED_TO_CATCH_POKEMON",
+  SAVE_POKEMON: "SAVE_POKEMON"
 };
 
-export const useCatchPokemon = () => {
+export const useCatchPokemon = name => {
   const [phase, _setPhase] = React.useState(
     CATCH_POKEMON_PHASE.LOOKING_FOR_POKEMON
   );
@@ -24,11 +25,6 @@ export const useCatchPokemon = () => {
     onToggle: onToggleCatchPokemonModal,
     onClose
   } = useDisclosure();
-  const {
-    pokemonDetails: {
-      pokemon: { name }
-    }
-  } = usePokemonDetailsContext();
 
   const _findPokemon = probability =>
     new Promise((resolve, reject) =>
@@ -55,22 +51,24 @@ export const useCatchPokemon = () => {
       if (probability < 0.3) {
         return;
       }
-      _setMessage(message => {
-        const copyMessage = [...message];
-        copyMessage.push(`Attempting to catch ${name}.`);
-        return copyMessage;
-      });
 
       setTimeout(() => {
         _setPhase(CATCH_POKEMON_PHASE.CATCH_POKEMON);
+        _setMessage(message => {
+          const copyMessage = [...message];
+          copyMessage.push(`Attempting to catch ${name}.`);
+          return copyMessage;
+        });
+      }, 2000);
 
+      setTimeout(() => {
         if (probability < 0.5) {
           _setPhase(CATCH_POKEMON_PHASE.FAILED_TO_CATCH_POKEMON);
           reject(`${name} has flee...`);
           return;
         }
 
-        _setPhase(CATCH_POKEMON_PHASE.SAVE_POKEMON);
+        _setPhase(CATCH_POKEMON_PHASE.SUCCESS_CATCH_POKEMON);
         _setMessage(message => {
           const copyMessage = [...message];
           message.push(`${name} catched successfully !`);
@@ -105,7 +103,10 @@ export const useCatchPokemon = () => {
     _setErrorMessage("");
   };
 
-  const savePokemon = () => {};
+  const handleContinueToSavePokemon = () =>
+    _setPhase(CATCH_POKEMON_PHASE.SAVE_POKEMON);
+
+  const handleClickSavePokemon = () => {};
 
   const onCloseCatchPokemonModal = () => {
     onClose();
@@ -118,6 +119,9 @@ export const useCatchPokemon = () => {
     errorMessage,
 
     huntPokemon,
+
+    handleContinueToSavePokemon,
+    handleClickSavePokemon,
 
     isCatchPokemonModalOpen,
     onToggleCatchPokemonModal,

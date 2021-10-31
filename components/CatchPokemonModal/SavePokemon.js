@@ -1,6 +1,13 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, ModalBody, ModalFooter } from "@chakra-ui/react";
 
 export const SavePokemon = () => {
-  return <Box>Save Pokemon</Box>;
+  const [nickName, _setNickName] = React.useState("");
+  return (
+    <React.Fragment>
+      <ModalBody>
+
+      </ModalBody>
+    </React.Fragment>
+  );
 };
