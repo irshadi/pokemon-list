@@ -21,7 +21,7 @@ export const Modal = ({ onClose, isOpen, title, children, ...props }) => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{title}</ModalHeader>
+        <ModalHeader textTransform="capitalize">{title}</ModalHeader>
         <ModalCloseButton rounded="full" color="system.grey" />
         {children}
       </ModalContent>

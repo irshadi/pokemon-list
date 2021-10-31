@@ -1,0 +1,3 @@
+export const POKEMON_STORAGE_CONFIG = {
+  MY_POKEMON: "MY_POKEMON"
+};

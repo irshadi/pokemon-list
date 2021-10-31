@@ -6,6 +6,7 @@ import {
   PokemonDetailsContextProvider,
   usePokemonDetailsContext
 } from "../../context/pokemonDetails";
+import { CatchPokemonContextProvider } from "../../context/catchPokemon";
 import { ClientContentOnly } from "../../components/ClientContentOnly";
 import { PokemonDetailedInformation } from "./PokemonDetailInformation";
 
@@ -25,7 +26,9 @@ const PokemonDetails = () => {
 export const PokemonDetailsWrapper = ({ name }) => {
   return (
     <PokemonDetailsContextProvider pokemon={name}>
-      <PokemonDetails />
+      <CatchPokemonContextProvider>
+        <PokemonDetails />
+      </CatchPokemonContextProvider>
     </PokemonDetailsContextProvider>
   );
 };

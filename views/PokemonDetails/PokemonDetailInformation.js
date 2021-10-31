@@ -11,18 +11,27 @@ import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 import { PokemonTypeChips } from "../../components/PokemonTypeChip";
 import { PokemonStats } from "../../components/PokemonStats";
 import { PokemonMovesModal } from "../../components/PokemonMovesModal";
+import { CatchPokemonModal } from "../../components/CatchPokemonModal";
+import { useCatchPokemonContext } from "../../context/catchPokemon";
 
 export const PokemonDetailedInformation = () => {
   const {
     pokemonDetails: { pokemon },
-    isPokemonDetailsLoading,
-    artwork
+    isPokemonDetailsLoading
   } = usePokemonDetailsContext();
-  const { isOpen, onToggle, onClose } = useDisclosure();
+  const { isCatchPokemonModalOpen, onToggleCatchPokemonModal } =
+    useCatchPokemonContext();
+
+  const {
+    isOpen: isMoveModalOpen,
+    onToggle: onToggleMoveModal,
+    onClose: onCloseMoveModal
+  } = useDisclosure();
 
   if (isPokemonDetailsLoading) {
     return "Loading";
   }
+
   const {
     id,
     name,
@@ -33,7 +42,8 @@ export const PokemonDetailedInformation = () => {
 
   return (
     <Box w="100%" p="1em" bg="system.white">
-      <PokemonMovesModal isOpen={isOpen} onClose={onClose} />
+      <PokemonMovesModal isOpen={isMoveModalOpen} onClose={onCloseMoveModal} />
+      <CatchPokemonModal />
       <Flex w="100%" justify="center" flexDir="column" align="center">
         <Image
           src={image}
@@ -85,13 +95,22 @@ export const PokemonDetailedInformation = () => {
 
           <Flex justify="center" py="1em">
             <Button
-              onClick={onToggle}
+              onClick={onToggleMoveModal}
               bgColor="pokemon.red.500"
               _hover={{
                 bgColor: "pokemon.red.300"
               }}
+              mr=".25em"
             >
               See Move List
+            </Button>
+            <Button
+              onClick={onToggleCatchPokemonModal}
+              bgColor="pokemon.blue.500"
+              textTransform="capitalize"
+              ml=".25em"
+            >
+              Hunt {name}
             </Button>
           </Flex>
         </Box>
