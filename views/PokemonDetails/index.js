@@ -9,13 +9,17 @@ import {
 import { CatchPokemonContextProvider } from "../../context/catchPokemon";
 import { ClientContentOnly } from "../../components/ClientContentOnly";
 import { PokemonDetailedInformation } from "./PokemonDetailInformation";
+import { generateId } from "../../helper";
 
 const PokemonDetails = () => {
-  const { name } = usePokemonDetailsContext();
+  const {
+    pokemonDetails: { pokemon: { id = "", name = "" } = {} }
+  } = usePokemonDetailsContext();
+
+  const title = `#${generateId(id)} - ${name}`;
   return (
     <Box w="100%">
-      <PageTitle title={name} label="" />
-
+      <PageTitle title={title} label="" />
       <ClientContentOnly>
         <PokemonDetailedInformation />
       </ClientContentOnly>

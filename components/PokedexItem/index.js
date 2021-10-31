@@ -1,17 +1,10 @@
 import React from "react";
 import { Box, Text, Flex, Image, Heading, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { generateId } from "../../helper";
 
 export const PokedexItem = ({ id, url, name, image, artwork }) => {
   const { push } = useRouter();
-
-  const generateId = () => {
-    if (+id < 1000) {
-      return ("00" + id).slice(-3);
-    }
-
-    return id;
-  };
 
   const handleClickPokemon = () =>
     push(
@@ -52,7 +45,7 @@ export const PokedexItem = ({ id, url, name, image, artwork }) => {
       <Flex w="80%" align="center">
         <Box w="100%" px="1.5em" textAlign="start">
           <Text fontSize="1em" fontWeight="800" color="system.light-grey">
-            #{generateId()}
+            #{generateId(id)}
           </Text>
           <Heading
             textTransform="capitalize"

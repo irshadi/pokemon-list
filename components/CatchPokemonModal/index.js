@@ -46,12 +46,12 @@ export const CatchPokemonModal = ({ ...props }) => {
   const CatchPokemonContent = generateCatchPokemonModalSection();
 
   // Trigger hunt pokemon on modal open
-  React.useEffect(() => {
-    if (!isCatchPokemonModalOpen) {
-      return;
-    }
-    huntPokemon();
-  }, [isCatchPokemonModalOpen]);
+  // React.useEffect(() => {
+  //   if (!isCatchPokemonModalOpen) {
+  //     return;
+  //   }
+  //   huntPokemon();
+  // }, [isCatchPokemonModalOpen]);
 
   return (
     <Modal

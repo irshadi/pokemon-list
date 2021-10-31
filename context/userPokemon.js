@@ -12,6 +12,6 @@ export const UserPokemonContextProvider = ({ children }) => {
   );
 };
 
-export const usePokedexContext = () => {
+export const useUserPokemonContext = () => {
   return React.useContext(UserPokemonContext);
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import { usePokemonDetailsContext } from "../context/pokemonDetails";
 
 export const CATCH_POKEMON_PHASE = {
   LOOKING_FOR_POKEMON: "LOOKING_FOR_POKEMON",
@@ -13,10 +12,7 @@ export const CATCH_POKEMON_PHASE = {
 };
 
 export const useCatchPokemon = name => {
-  const [phase, _setPhase] = React.useState(
-    CATCH_POKEMON_PHASE.LOOKING_FOR_POKEMON
-  );
-  const [nickName, setNickName] = React.useState("");
+  const [phase, _setPhase] = React.useState(CATCH_POKEMON_PHASE.SAVE_POKEMON);
   const [message, _setMessage] = React.useState([]);
   const [errorMessage, _setErrorMessage] = React.useState("");
 
@@ -106,8 +102,6 @@ export const useCatchPokemon = name => {
   const handleContinueToSavePokemon = () =>
     _setPhase(CATCH_POKEMON_PHASE.SAVE_POKEMON);
 
-  const handleClickSavePokemon = () => {};
-
   const onCloseCatchPokemonModal = () => {
     onClose();
     resetCatchPokemon();
@@ -121,7 +115,6 @@ export const useCatchPokemon = name => {
     huntPokemon,
 
     handleContinueToSavePokemon,
-    handleClickSavePokemon,
 
     isCatchPokemonModalOpen,
     onToggleCatchPokemonModal,
