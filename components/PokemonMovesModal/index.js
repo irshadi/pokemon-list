@@ -23,7 +23,7 @@ export const PokemonMovesModal = ({ ...props }) => {
 
   const field = ["No", "Move", "Learned at Level"];
   return (
-    <Modal {...props} title="Pokemon Move(s)" scrollBehavior="inside">
+    <Modal {...props} title="Pokemon Moves" scrollBehavior="inside">
       <ModalBody>
         <Table>
           <Thead>
