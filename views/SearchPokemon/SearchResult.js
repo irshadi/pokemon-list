@@ -6,7 +6,13 @@ import { useRouter } from "next/router";
 import { IoIosHelpCircle } from "react-icons/io";
 import { useUserPokemonContext } from "../../context/userPokemon";
 
-const EmptyContent = ({ title, label, ...props }) => {
+export const EmptyContent = ({
+  title,
+  label,
+  icon = IoIosHelpCircle,
+  iconColor,
+  ...props
+}) => {
   return (
     <Flex
       w="100%"
@@ -21,7 +27,7 @@ const EmptyContent = ({ title, label, ...props }) => {
     >
       <Icon
         as={IoIosHelpCircle}
-        color="pokemon.grey.700"
+        color={iconColor || "pokemon.grey.700"}
         fontSize="5em"
         mb={[".5em"]}
       />
