@@ -81,13 +81,13 @@ export const useCatchPokemon = name => {
 
   const huntPokemon = async () => {
     const probability = Math.random();
+    _setMessage(message => {
+      const copyMessage = [...message];
+      message.push(`Looking for ${name}...`);
+      return copyMessage;
+    });
 
     try {
-      _setMessage(message => {
-        const copyMessage = [...message];
-        message.push(`Looking for ${name}...`);
-        return copyMessage;
-      });
       await Promise.all([
         _findPokemon(probability),
         _catchPokemon(probability)
