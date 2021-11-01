@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Heading, Text } from "@chakra-ui/react";
+import Head from "next/head";
 
 export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
   return (
@@ -16,6 +17,9 @@ export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
       justify="center"
       {...props}
     >
+      <Head>
+        <title>{title}</title>
+      </Head>
       <Heading
         data-cy="page-title-heading"
         textTransform="capitalize"

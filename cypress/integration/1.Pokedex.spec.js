@@ -29,7 +29,6 @@ describe("Pokedex Page", () => {
         // Test Render pokemon list 001
         // it happens to be "bulbasaur"
         cy.get("@pokemonListBulbasaur").within(() => {
-          cy.get('img[data-cy="pokedex-item-pokemon-image"]').should("exist");
           cy.get('p[data-cy="pokedex-item-pokemon-id"]')
             .should("exist")
             .contains("#001");
@@ -82,7 +81,6 @@ describe("Pokedex Page", () => {
 
       // it happens to be "metapod"
       cy.get("@pokemonListMetapod").within(() => {
-        cy.get('img[data-cy="pokedex-item-pokemon-image"]').should("exist");
         cy.get('p[data-cy="pokedex-item-pokemon-id"]')
           .should("exist")
           .contains("#011");

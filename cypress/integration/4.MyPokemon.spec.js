@@ -118,6 +118,21 @@ describe("My Pokemon Page", () => {
       .should("be.enabled")
       .click();
 
+    // Delete modal show
+    cy.get('section[data-cy="pokemon-card-modal"]')
+      .should("exist")
+      .within(() => {
+        cy.contains(
+          "Are you sure you want to release all of your catched pokemon"
+        );
+        cy.get('button[data-cy="release-pokemon-cancel-button"]').should(
+          "be.enabled"
+        );
+        cy.get('button[data-cy="release-pokemon-release-button"]')
+          .should("be.enabled")
+          .click();
+      });
+
     cy.toastCalled("You released all of your pokemons.");
   });
 });
