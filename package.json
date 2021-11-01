@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    
+    "test:prepare": "yarn build && yarn start --port 3001",
+    "test:open": "cypress open",
+    "test:run": "cypress run"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
