@@ -37,6 +37,8 @@ export const HuntPokemon = () => {
     [CATCH_POKEMON_PHASE.FAILED_TO_CATCH_POKEMON]: `Failed to catch ${pokemon}`
   };
 
+  console.log(message, "<< MESSAGE COMPONENTS");
+
   return (
     <React.Fragment>
       <ModalBody>

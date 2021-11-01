@@ -1,19 +1,6 @@
 import React from "react";
-import {
-  ModalFooter,
-  ModalBody,
-  Button,
-  Image,
-  Flex,
-  Box,
-  Heading,
-  Text
-} from "@chakra-ui/react";
 import { Modal } from "../Modal";
-import {
-  CATCH_POKEMON_PHASE,
-  useCatchPokemon
-} from "../../hooks/useCatchPokemon";
+import { CATCH_POKEMON_PHASE } from "../../hooks/useCatchPokemon";
 import { useCatchPokemonContext } from "../../context/catchPokemon";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 import { SavePokemon } from "./SavePokemon";

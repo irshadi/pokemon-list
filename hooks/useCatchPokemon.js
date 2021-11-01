@@ -18,6 +18,8 @@ export const useCatchPokemon = name => {
   const [message, _setMessage] = React.useState([]);
   const [errorMessage, _setErrorMessage] = React.useState("");
 
+  console.log(message, "<< MESSAGE HOOKS");
+
   const {
     isOpen: isCatchPokemonModalOpen,
     onToggle: onToggleCatchPokemonModal,
