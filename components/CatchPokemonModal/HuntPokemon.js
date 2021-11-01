@@ -51,7 +51,12 @@ export const HuntPokemon = () => {
           />
         </Flex>
         <Box w="inherit" mt="1em">
-          <Heading textTransform="capitalize" fontSize="md" textAlign="center">
+          <Heading
+            textTransform="capitalize"
+            fontSize="md"
+            textAlign="center"
+            data-cy="catch-pokemon-phase-title"
+          >
             {HUNT_POKEMON_PHASE_COPY[phase]}
           </Heading>
           <Box
@@ -60,6 +65,7 @@ export const HuntPokemon = () => {
             p="1em"
             borderRadius=".25em"
             mt="1em"
+            data-cy="catch-pokemon-message"
           >
             {message.map((m, index) => (
               <Text
@@ -79,7 +85,11 @@ export const HuntPokemon = () => {
               </Text>
             ))}
             {hasError && (
-              <Text color="pokemon.red.500" fontWeight="600">
+              <Text
+                color="pokemon.red.500"
+                fontWeight="600"
+                data-cy="catch-pokemon-error-message"
+              >
                 {errorMessage}
               </Text>
             )}
@@ -89,10 +99,17 @@ export const HuntPokemon = () => {
       <ModalFooter>
         <Flex justify="center" w="100%">
           {hasError && (
-            <Button onClick={onCloseCatchPokemonModal}>Return</Button>
+            <Button onClick={onCloseCatchPokemonModal} data-cy="return-button">
+              Return
+            </Button>
           )}
           {isPokemonCatched && (
-            <Button onClick={handleContinueToSavePokemon}>Save Pokemon</Button>
+            <Button
+              onClick={handleContinueToSavePokemon}
+              data-cy="save-pokemon-button"
+            >
+              Save Pokemon
+            </Button>
           )}
         </Flex>
       </ModalFooter>
