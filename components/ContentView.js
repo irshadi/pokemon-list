@@ -12,7 +12,7 @@ export const ContentView = ({ children }) => {
       />
       <Flex
         mt={["2.75em", "2.75em", "2.75em", "4.5em"]}
-        pb={["5em", "6.5em"]}
+        pb="5em"
         borderLeft="solid 1px"
         borderRight="solid 1px"
         borderColor="pokemon.grey.100"
@@ -23,7 +23,6 @@ export const ContentView = ({ children }) => {
           "calc(100% - 2.75em)",
           "calc(100% - 4.5em)"
         ]}
-        // bg="red"
         flexDir="column"
         align="center"
         marginRight="auto"
@@ -31,7 +30,7 @@ export const ContentView = ({ children }) => {
       >
         {children}
       </Flex>
-      <NavigationBar h="5em" />
+      <NavigationBar h="5em" w={["100vw", "85vw", "65vw", "35em"]} />
     </Box>
   );
 };

@@ -19,6 +19,7 @@ export const SearchPokemon = () => {
         label="The Pokedex contains detailed stats for every create from the Pokemon games. You can search by pokemon name."
         isHorizontal={false}
         flexDir="column"
+        justify="center"
         h="32.5%"
         hasBorder
       >

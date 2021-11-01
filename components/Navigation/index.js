@@ -40,13 +40,16 @@ export const NavigationBar = ({ ...props }) => {
       justify="center"
       py=".25em"
       data-cy="navigation-bar"
+      marginX="auto"
+      left="0"
+      right="0"
       {...props}
     >
       <Flex
         bg="white"
         rounded="full"
         boxShadow="lg"
-        w={["92.5%", "67.5%", "60%", "35%"]}
+        w={["92.5%"]}
         justify="center"
         px={[".75em"]}
         zIndex={5}

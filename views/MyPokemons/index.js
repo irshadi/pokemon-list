@@ -27,7 +27,7 @@ export const MyPokemons = () => {
         label="This page contain all of your catched pokemons."
         hasBorder
       >
-        <Flex w="40%" h="100%" justify="flex-end">
+        <Flex w="40%" h="100%" justify="flex-end" align="center">
           <Button
             colorScheme="red"
             mt=".5em"
