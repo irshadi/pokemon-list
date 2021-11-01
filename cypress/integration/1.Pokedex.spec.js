@@ -20,6 +20,7 @@ describe("Pokedex Page", () => {
     cy.get('div[data-cy="pokedex-scrollable-area"]')
       .should("exist")
       .within(() => {
+        cy.wait(2500);
         cy.get('button[data-cy="pokedex-pokemon-button"]')
           .should("have.length", 10)
           .as("pokedexPokemonList");
