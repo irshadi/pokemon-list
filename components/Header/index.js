@@ -18,7 +18,7 @@ export const Header = ({ ...props }) => {
     >
       <Image
         src="/img/logo.png"
-        h="70%"
+        h="80%"
         p=".5em"
         ml="1em"
         objectFit="contain"

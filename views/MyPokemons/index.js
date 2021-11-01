@@ -1,10 +1,10 @@
 import React from "react";
-import { Box, Button, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, useDisclosure } from "@chakra-ui/react";
 import { ListOfMyPokemons } from "./ListOfMyPokemon";
 import { PageTitle } from "../../components/Header/PageTitle";
 import { ClientContentOnly } from "../../components/ClientContentOnly";
-import { useUserPokemonContext } from "../../context/userPokemon";
 import { DeletePokemonModal } from "../Fragments/DeletePokemonModal";
+import { useUserPokemonContext } from "../../context/userPokemon";
 
 export const MyPokemons = () => {
   const {
@@ -25,21 +25,26 @@ export const MyPokemons = () => {
       <PageTitle
         title="My Pokemon"
         label="This page contain all of your catched pokemons."
-        h="25%"
         hasBorder
       >
-        <Button
-          mt={[".5em", "2.5em", ".75em", "1em"]}
-          colorScheme="red"
-          onClick={onToggleReleasePokemonModal}
-          isDisabled={!pokemons.length}
-          data-cy="release-all-pokemon-button"
-        >
-          Release All Pokemon
-        </Button>
+        <Flex w="40%" h="100%" justify="flex-end">
+          <Button
+            colorScheme="red"
+            mt=".5em"
+            onClick={onToggleReleasePokemonModal}
+            isDisabled={!pokemons.length}
+            data-cy="release-all-pokemon-button"
+            isTruncated
+          >
+            Release All
+          </Button>
+        </Flex>
       </PageTitle>
-      <ClientContentOnly bg="system.white" h="75%" overflowY="auto">
-        <ListOfMyPokemons />
+
+      <ClientContentOnly bg="system.white" h="82.5%" overflowY="auto">
+        <ListOfMyPokemons
+          onToggleReleasePokemonModal={onToggleReleasePokemonModal}
+        />
       </ClientContentOnly>
     </Box>
   );

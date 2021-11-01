@@ -31,23 +31,25 @@ export const NavigationBar = ({ ...props }) => {
 
   return (
     <Flex
-      bg="transparent"
+      borderTop="solid 1px"
+      borderColor="pokemon.grey.100"
+      bg="system.white"
       pos="absolute"
       bottom="0"
       w="100%"
       justify="center"
-      pb=".5em"
-      px=".75em"
+      py=".25em"
       data-cy="navigation-bar"
       {...props}
     >
       <Flex
         bg="white"
-        boxShadow="1px 5px 20px -2px rgba(0,0,0,0.75)"
-        w={["97.5vw", "80vw", "60vw", "32.5em"]}
+        rounded="full"
+        boxShadow="lg"
+        w={["92.5%", "67.5%", "60%", "35%"]}
         justify="center"
-        borderRadius="full"
         px={[".75em"]}
+        zIndex={5}
       >
         {navigationMenu.map((props, index) => (
           <NavigationButton

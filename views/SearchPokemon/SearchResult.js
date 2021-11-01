@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Flex, Text, Button, Icon } from "@chakra-ui/react";
-import { SearchInput } from "../../components/Inputs";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
 import { PokemonCard } from "../../components/PokemonCard";
 import { useRouter } from "next/router";
@@ -40,55 +39,37 @@ export const SearchResult = () => {
   const { checkPokemon } = useUserPokemonContext();
   const {
     pokemonDetails: { pokemon = {} },
-    isPokemonDetailsLoading,
     isSearchedPokemonFound,
-    isSearchResultEmpty,
-    setSearchValue
+    isSearchResultEmpty
   } = usePokemonDetailsContext();
   const { push } = useRouter();
 
   return (
-    <Box>
-      <Box
-        borderBottom="solid 1px"
-        borderColor="pokemon.grey.100"
-        bg="white"
-        px="1em"
-      >
-        <SearchInput
-          onSearch={setSearchValue}
-          isSearching={isPokemonDetailsLoading}
-          placeholder="Search Pokemon..."
-          data-cy="search-pokemon-input"
-        />
-      </Box>
-
-      <Box p={["1em", "1em", ".5em", "2em"]} h="inherit">
-        {isSearchedPokemonFound ? (
-          <PokemonCard
-            {...pokemon}
-            isSearchingPokemon
-            h="20em"
-            justify="center"
-            isCatched={checkPokemon(pokemon.name)}
+    <Box p={["1em", "1em", ".5em", "2em"]} h="100%">
+      {isSearchedPokemonFound ? (
+        <PokemonCard
+          {...pokemon}
+          isSearchingPokemon
+          h="100%"
+          justify="center"
+          isCatched={checkPokemon(pokemon.name)}
+        >
+          <Button
+            mt="1em"
+            onClick={() => push(`/pokemon_details/${pokemon.name}`)}
+            data-cy="pokemon-search-view-pokemon-button"
           >
-            <Button
-              mt="1em"
-              onClick={() => push(`/pokemon_details/${pokemon.name}`)}
-              data-cy="pokemon-search-view-pokemon-button"
-            >
-              View Pokemon
-            </Button>
-          </PokemonCard>
-        ) : isSearchResultEmpty ? (
-          <EmptyContent
-            title={"Can not find any result"}
-            label={"Pokemon doesn't exist"}
-            h="20em"
-            data-cy="pokemon-search-result-empty"
-          />
-        ) : null}
-      </Box>
+            View Pokemon
+          </Button>
+        </PokemonCard>
+      ) : isSearchResultEmpty ? (
+        <EmptyContent
+          title={"Can not find any result"}
+          label={"Pokemon doesn't exist"}
+          h="100%"
+          data-cy="pokemon-search-result-empty"
+        />
+      ) : null}
     </Box>
   );
 };

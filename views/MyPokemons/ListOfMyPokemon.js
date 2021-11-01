@@ -9,6 +9,7 @@ export const ListOfMyPokemons = () => {
   return (
     <Grid
       p="1em"
+      h="100%"
       gap={4}
       templateColumns={[
         "repeat(1, 1fr)",

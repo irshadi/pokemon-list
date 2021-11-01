@@ -7,6 +7,7 @@ import {
   Button,
   useDisclosure,
   SkeletonCircle,
+  Center,
   Spinner
 } from "@chakra-ui/react";
 import { usePokemonDetailsContext } from "../../context/pokemonDetails";
@@ -34,7 +35,8 @@ export const PokemonDetailedInformation = () => {
   if (isPokemonDetailsLoading) {
     return (
       <Flex
-        w="inherit"
+        w="100%"
+        h="100%"
         p="1em"
         justify="center"
         align="center"
@@ -63,113 +65,119 @@ export const PokemonDetailedInformation = () => {
   } = pokemon;
 
   const imgSize = {
-    h: ["8.5em", "8.5em", "8.5em", "12.5em"],
-    w: ["8.5em", "8.5em", "8.5em", "12.5em"],
-    p: [".5em", "1em"],
-    mb: ["-4.5em", "-6em", "-4.75em", "-7.5em"]
+    h: ["5.5em", "5.5em", "5.5em", "8.5em"],
+    w: ["5.5em", "5.5em", "5.5em", "8.5em"]
   };
 
   return (
-    <Box w="100%" h="100%" p="1em">
+    <Box w="100%" h="100%" p=".5em 1em">
       <PokemonMovesModal
         isOpen={isMoveModalOpen}
         onClose={onCloseMoveModal}
         data-cy="pokemon-move-list-modal"
       />
       <CatchPokemonModal data-cy="catch-pokemon-modal" />
-      <Flex
+
+      <Box
         w="100%"
-        h="inherit"
-        justify="center"
-        flexDir="column"
-        align="center"
+        h="100%"
         data-cy="pokemon-details-wrapper"
+        bg="white"
+        borderRadius=".25em"
+        boxShadow="sm"
+        p={["1em", "1em", ".5em", "1em"]}
+        px={["1.5em", "2em", "2em", "3em"]}
       >
-        <Image
-          src={image}
-          fallback={<SkeletonCircle {...imgSize} />}
-          bg="pokemon.grey.100"
-          borderRadius="full"
-          objectFit="cover"
-          objectPosition="center"
-          border="solid 5px"
-          borderColor="white"
-          zIndex={2}
-          data-cy="pokemon-details-pokemon-image"
-          {...imgSize}
-        />
-        <Box
-          w="100%"
-          textAlign="center"
-          bg="white"
-          borderRadius="md"
-          boxShadow="md"
-          pt={["5em", "5.5em", "5em", "8.5em"]}
-        >
-          <Text
-            fontSize={["md", "lg", "lg", "xl"]}
-            fontWeight="800"
-            textTransform="capitalize"
-            color="pokemon.grey.300"
-            data-cy="pokemon-details-pokemon-id"
-          >
-            {generateId(id)}
-          </Text>
-          <Text
-            fontSize={["lg", "xl", "xl", "2xl"]}
-            fontWeight="800"
-            textTransform="capitalize"
-            color="system.grey"
-            data-cy="pokemon-details-pokemon-name"
-          >
-            {name}
-          </Text>
-          <Flex w="100%" justify="center" p={[".25em", ".5em", ".25em", "1em"]}>
-            {types.map(({ type: { name: typeName } }, index) => (
-              <PokemonTypeChips key={`${index}-${typeName}`} type={typeName} />
-            ))}
+        <Flex w="100%" align="center">
+          <Flex w="40%">
+            <Image
+              src={image}
+              fallback={<SkeletonCircle {...imgSize} />}
+              bg="pokemon.grey.100"
+              borderRadius="full"
+              objectFit="cover"
+              objectPosition="center"
+              border="solid 5px"
+              borderColor="white"
+              zIndex={5}
+              data-cy="pokemon-details-pokemon-image"
+              {...imgSize}
+            />
           </Flex>
-
-          <Box
-            p={["1em", "1em", ".5em", "1em"]}
-            px={["1.5em", "2em", "2em", "3em"]}
-            data-cy="pokemon-details-pokemon-stats"
+          <Flex
+            w="60%"
+            px="1em"
+            h="100%"
+            justify="center"
+            align="flex-start"
+            flexDir="column"
           >
-            {stats.map(({ stat: { name }, base_stat: statValue }, index) => {
-              return (
-                <PokemonStats
-                  key={`${name}-${index}`}
-                  stat={name}
-                  value={statValue}
-                />
-              );
-            })}
-          </Box>
-
-          <Flex justify="center" py={["1em", "1em", ".75em", "1em"]}>
-            <Button
-              onClick={onToggleMoveModal}
-              bgColor="pokemon.red.500"
-              _hover={{
-                bgColor: "pokemon.red.300"
-              }}
-              mr=".25em"
-              data-cy="pokemon-details-move-list-button"
-            >
-              See Move List
-            </Button>
-            <Button
-              onClick={onToggleCatchPokemonModal}
-              bgColor="pokemon.blue.500"
+            <Text
+              ml=".75em"
+              fontSize={["md", "lg", "lg", "xl"]}
+              fontWeight="800"
               textTransform="capitalize"
-              ml=".25em"
-              data-cy="pokemon-details-catch-pokemon-button"
+              color="pokemon.grey.300"
+              data-cy="pokemon-details-pokemon-id"
             >
-              Hunt {name}
-            </Button>
+              {generateId(id)}
+            </Text>
+            <Text
+              ml=".75em"
+              fontSize={["lg", "xl", "xl", "2xl"]}
+              fontWeight="800"
+              textTransform="capitalize"
+              color="system.grey"
+              data-cy="pokemon-details-pokemon-name"
+            >
+              {name}
+            </Text>
+            <Flex w="100%" py={[".5em", ".25em", ".25em", "1em"]}>
+              {types.map(({ type: { name: typeName } }, index) => (
+                <PokemonTypeChips
+                  key={`${index}-${typeName}`}
+                  type={typeName}
+                />
+              ))}
+            </Flex>
           </Flex>
+        </Flex>
+
+        <Box data-cy="pokemon-details-pokemon-stats" mt="1em">
+          {stats.map(({ stat: { name }, base_stat: statValue }, index) => {
+            return (
+              <PokemonStats
+                key={`${name}-${index}`}
+                stat={name}
+                value={statValue}
+              />
+            );
+          })}
         </Box>
-      </Flex>
+
+        <Flex justify="center" mt="1.5em" py={["1em", "1em", ".75em", "1em"]}>
+          <Button
+            onClick={onToggleMoveModal}
+            bgColor="pokemon.red.500"
+            _hover={{
+              bgColor: "pokemon.red.300"
+            }}
+            mr=".25em"
+            data-cy="pokemon-details-move-list-button"
+          >
+            See Move List
+          </Button>
+          <Button
+            onClick={onToggleCatchPokemonModal}
+            bgColor="pokemon.blue.500"
+            textTransform="capitalize"
+            ml=".25em"
+            data-cy="pokemon-details-catch-pokemon-button"
+          >
+            Hunt {name}
+          </Button>
+        </Flex>
+      </Box>
     </Box>
   );
 };

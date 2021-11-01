@@ -66,7 +66,7 @@ export const usePokemonDetails = pokemonName => {
     if (hasName) {
       return;
     }
-    refetch({ name: searchValue });
+    refetch({ name: searchValue.toLowerCase() });
   }, [searchValue]);
 
   return {

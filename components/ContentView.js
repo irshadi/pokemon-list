@@ -5,16 +5,25 @@ import { Header } from "./Header";
 
 export const ContentView = ({ children }) => {
   return (
-    <Box h="100vh" maxH="100vh" w="100vw" overflow="hidden" bgColor="white">
-      <Header h={["3.75em", "4.5em"]} w={["100vw", "85vw", "65vw", "35em"]} />
+    <Box h="100vh" w="100%" overflow="auto" bgColor="white">
+      <Header
+        h={["2.75em", "2.75em", "2.75em", "4.5em"]}
+        w={["100vw", "85vw", "65vw", "35em"]}
+      />
       <Flex
-        pt={["3.75em", "4.5em"]}
+        mt={["2.75em", "2.75em", "2.75em", "4.5em"]}
         pb={["5em", "6.5em"]}
         borderLeft="solid 1px"
         borderRight="solid 1px"
         borderColor="pokemon.grey.100"
         w={["100vw", "85vw", "65vw", "35em"]}
-        h="100%"
+        h={[
+          "calc(100% - 2.75em)",
+          "calc(100% - 2.75em)",
+          "calc(100% - 2.75em)",
+          "calc(100% - 4.5em)"
+        ]}
+        // bg="red"
         flexDir="column"
         align="center"
         marginRight="auto"
@@ -22,7 +31,7 @@ export const ContentView = ({ children }) => {
       >
         {children}
       </Flex>
-      <NavigationBar h={["5em", "6.5em"]} />
+      <NavigationBar h="5em" />
     </Box>
   );
 };

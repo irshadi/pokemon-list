@@ -28,11 +28,11 @@ export const NavigationButton = ({
         <Icon
           as={MenuIcon}
           color={isSelected ? "pokemon.red.500" : "pokemon.grey.700"}
-          w={[8, 9]}
-          h={[8, 9]}
+          w={[8]}
+          h={[8]}
         />
         <Text
-          mt={[".35em", ".5em", ".15em"]}
+          mt={[".35em", ".5em", "0"]}
           fontWeight="bold"
           color={isSelected ? "pokemon.red.500" : "pokemon.grey.700"}
           textShadow="base"

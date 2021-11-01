@@ -20,11 +20,11 @@ export const PokemonStats = ({ stat, value }) => {
       <Text w={["35%", "30%"]} fontWeight="500" textTransform="uppercase">
         {label}
       </Text>
-      <Text w={"10%"} fontWeight="800">
+      <Text w={["15%", "10%"]} fontWeight="800">
         {value}
       </Text>
       <Progress
-        w={["55%", "60%"]}
+        w={["50%", "60%"]}
         colorScheme={color}
         value={value}
         rounded="full"
