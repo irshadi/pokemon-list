@@ -47,6 +47,7 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
         variant="transparent"
         bg="white"
         _hover={{ bg: "pokemon.red.200" }}
+        data-cy="pokedex-pokemon-button"
       >
         <Image
           src={image}
@@ -55,12 +56,18 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
           objectPosition="center"
           objectFit="contain"
           rounded="full"
+          data-cy="pokedex-item-pokemon-image"
           {...imgStyle}
         />
 
         <Flex w="80%" align="center">
           <Box w="100%" px="1.5em" textAlign="start">
-            <Text fontSize="1em" fontWeight="800" color="system.light-grey">
+            <Text
+              fontSize="1em"
+              fontWeight="800"
+              color="system.light-grey"
+              data-cy="pokedex-item-pokemon-id"
+            >
               {generateId(id)}
             </Text>
 
@@ -68,6 +75,7 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
               textTransform="capitalize"
               fontSize="1.5em"
               color="system.grey"
+              data-cy="pokedex-item-pokemon-name"
             >
               {name}
             </Heading>
