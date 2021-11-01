@@ -52,6 +52,7 @@ const SearchInput = ({
               color="pokemon.grey.700"
               size="sm"
               variant="icon-button"
+              data-cy="clear-search-input-button"
             />
           )}
         </InputRightElement>

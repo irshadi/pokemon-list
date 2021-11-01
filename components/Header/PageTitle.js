@@ -4,6 +4,7 @@ import { Flex, Heading, Text } from "@chakra-ui/react";
 export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
   return (
     <Flex
+      data-cy="page-title-wrapper"
       w="100%"
       textAlign="start"
       p="1em"
@@ -16,6 +17,7 @@ export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
       {...props}
     >
       <Heading
+        data-cy="page-title-heading"
         textTransform="capitalize"
         w="100%"
         color="system.grey"
@@ -24,6 +26,7 @@ export const PageTitle = ({ title, label, children, hasBorder, ...props }) => {
         {title}
       </Heading>
       <Text
+        data-cy="page-title-label"
         mt={[".25em", ".5em"]}
         fontSize="md"
         color="system.grey"

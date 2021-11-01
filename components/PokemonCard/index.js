@@ -33,6 +33,7 @@ const ActionMenuPokemonCard = ({ onClickInfo, onClickDelete, ...props }) => {
         colorScheme="grey"
         icon={<BsThreeDotsVertical />}
         variant="transparent"
+        data-cy="pokemon-card-more-button"
       >
         More
       </MenuButton>
@@ -41,6 +42,7 @@ const ActionMenuPokemonCard = ({ onClickInfo, onClickDelete, ...props }) => {
           icon={<IoIosInformationCircle />}
           color="pokemon.grey.800"
           onClick={onClickInfo}
+          data-cy="pokemon-information-button"
         >
           Information
         </MenuItem>
@@ -48,6 +50,7 @@ const ActionMenuPokemonCard = ({ onClickInfo, onClickDelete, ...props }) => {
           icon={<IoIosRemoveCircle />}
           color="pokemon.red.700"
           onClick={onClickDelete}
+          data-cy="pokemon-release-button"
         >
           Release
         </MenuItem>
@@ -84,6 +87,7 @@ export const PokemonCard = ({
       flexDir="column"
       align="center"
       pos="relative"
+      data-cy="pokemon-card-wrapper"
       {...styleProps}
     >
       <DeletePokemonModal
@@ -92,6 +96,7 @@ export const PokemonCard = ({
         index={index}
         name={name}
         nickName={nickName}
+        data-cy="pokemon-card-modal"
       />
       <Image
         src={img}
@@ -99,6 +104,7 @@ export const PokemonCard = ({
         h={["5.5em", "5.5em", "5em", "7.5em"]}
         bg="system.white"
         rounded="full"
+        data-cy="pokemon-card-image"
       />
 
       <Box align="center" mt=".5em" w="100%">
@@ -114,6 +120,7 @@ export const PokemonCard = ({
             fontSize="md"
             color="pokemon.grey.800"
             ml=".15em"
+            data-cy="pokemon-card-pokemon-id"
           >
             {generateId(id)}
           </Text>
@@ -123,6 +130,7 @@ export const PokemonCard = ({
           fontWeight="700"
           fontSize="xl"
           color="system.grey"
+          data-cy="pokemon-card-pokemon-name"
         >
           {name}
         </Text>
@@ -136,6 +144,7 @@ export const PokemonCard = ({
           fontWeight="500"
           fontSize="lg"
           color="pokemon.grey.800"
+          data-cy="pokemon-card-pokemon-nickname"
         >
           {nickName}
         </Text>

@@ -26,7 +26,7 @@ export const useUserPokemon = () => {
     });
   };
 
-  const handleSavePokemon = savedPokemon => {
+  const handleSavePokemon = (savedPokemon, callback) => {
     //  Handle duplicate by nickname
     const { nickName } = savedPokemon;
     const foundIndex = pokemons.findIndex(
@@ -58,6 +58,7 @@ export const useUserPokemon = () => {
       duration: 3000,
       isClosable: true
     });
+    callback();
   };
 
   const handleDeletePokemon = index => {

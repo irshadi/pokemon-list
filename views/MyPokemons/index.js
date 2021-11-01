@@ -20,6 +20,7 @@ export const MyPokemons = () => {
           colorScheme="red"
           onClick={clearAllPokemon}
           isDisabled={!pokemons.length}
+          data-cy="release-all-pokemon-button"
         >
           Release All Pokemon
         </Button>

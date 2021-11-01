@@ -59,6 +59,7 @@ export const SearchResult = () => {
           onSearch={setSearchValue}
           isSearching={isPokemonDetailsLoading}
           placeholder="Search Pokemon..."
+          data-cy="search-pokemon-input"
         />
       </Box>
 
@@ -74,6 +75,7 @@ export const SearchResult = () => {
             <Button
               mt="1em"
               onClick={() => push(`/pokemon_details/${pokemon.name}`)}
+              data-cy="pokemon-search-view-pokemon-button"
             >
               View Pokemon
             </Button>
@@ -83,6 +85,7 @@ export const SearchResult = () => {
             title={"Can not find any result"}
             label={"Pokemon doesn't exist"}
             h="20em"
+            data-cy="pokemon-search-result-empty"
           />
         ) : null}
       </Box>

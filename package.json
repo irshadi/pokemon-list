@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    
+    "test:prepare": "yarn build && yarn start --port 3001",
+    "test:open": "cypress open",
+    "test:run": "cypress run"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
@@ -23,6 +27,7 @@
     "react-icons": "^4.3.1"
   },
   "devDependencies": {
+    "cypress": "^8.7.0",
     "eslint": "7",
     "eslint-config-next": "12.0.1",
     "prettier": "^2.4.1"

@@ -38,7 +38,12 @@ export const PokemonLists = () => {
       >
         <Flex w="50%">
           {isPokedexCalled && (
-            <Text fontSize="md" color="system.grey" fontWeight="600">
+            <Text
+              fontSize="md"
+              color="system.grey"
+              fontWeight="600"
+              data-cy="page-information"
+            >
               Page {currentPage + 1} out of {totalPage}
             </Text>
           )}
@@ -48,10 +53,12 @@ export const PokemonLists = () => {
             onClick={handleClickPreviousPage}
             mr=".5em"
             isDisabled={!currentPage}
+            data-cy="previous-page-button"
           >
             Prev
           </Button>
           <Button
+            data-cy="next-page-button"
             onClick={handleClickNextPage}
             isDisabled={currentPage === totalPage}
           >

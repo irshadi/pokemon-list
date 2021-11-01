@@ -33,7 +33,13 @@ export const PokemonDetailedInformation = () => {
 
   if (isPokemonDetailsLoading) {
     return (
-      <Flex w="inherit" p="1em" justify="center" align="center">
+      <Flex
+        w="inherit"
+        p="1em"
+        justify="center"
+        align="center"
+        data-cy="pokemon-details-loading"
+      >
         <Spinner
           thickness="4px"
           emptyColor="system.white"
@@ -65,14 +71,19 @@ export const PokemonDetailedInformation = () => {
 
   return (
     <Box w="100%" h="100%" p="1em">
-      <PokemonMovesModal isOpen={isMoveModalOpen} onClose={onCloseMoveModal} />
-      <CatchPokemonModal />
+      <PokemonMovesModal
+        isOpen={isMoveModalOpen}
+        onClose={onCloseMoveModal}
+        data-cy="pokemon-move-list-modal"
+      />
+      <CatchPokemonModal data-cy="catch-pokemon-modal" />
       <Flex
         w="100%"
         h="inherit"
         justify="center"
         flexDir="column"
         align="center"
+        data-cy="pokemon-details-wrapper"
       >
         <Image
           src={image}
@@ -84,6 +95,7 @@ export const PokemonDetailedInformation = () => {
           border="solid 5px"
           borderColor="white"
           zIndex={2}
+          data-cy="pokemon-details-pokemon-image"
           {...imgSize}
         />
         <Box
@@ -99,6 +111,7 @@ export const PokemonDetailedInformation = () => {
             fontWeight="800"
             textTransform="capitalize"
             color="pokemon.grey.300"
+            data-cy="pokemon-details-pokemon-id"
           >
             {generateId(id)}
           </Text>
@@ -107,6 +120,7 @@ export const PokemonDetailedInformation = () => {
             fontWeight="800"
             textTransform="capitalize"
             color="system.grey"
+            data-cy="pokemon-details-pokemon-name"
           >
             {name}
           </Text>
@@ -119,6 +133,7 @@ export const PokemonDetailedInformation = () => {
           <Box
             p={["1em", "1em", ".5em", "1em"]}
             px={["1.5em", "2em", "2em", "3em"]}
+            data-cy="pokemon-details-pokemon-stats"
           >
             {stats.map(({ stat: { name }, base_stat: statValue }, index) => {
               return (
@@ -139,6 +154,7 @@ export const PokemonDetailedInformation = () => {
                 bgColor: "pokemon.red.300"
               }}
               mr=".25em"
+              data-cy="pokemon-details-move-list-button"
             >
               See Move List
             </Button>
@@ -147,6 +163,7 @@ export const PokemonDetailedInformation = () => {
               bgColor="pokemon.blue.500"
               textTransform="capitalize"
               ml=".25em"
+              data-cy="pokemon-details-catch-pokemon-button"
             >
               Hunt {name}
             </Button>

@@ -22,6 +22,7 @@ export const SavePokemon = () => {
           onChange={e => _setNickName(e.target.value)}
           placeholder={"Nickname"}
           isRequired={!nickName}
+          data-cy="pokemon-nickname-input"
         />
       </ModalBody>
       <ModalFooter>
@@ -30,6 +31,7 @@ export const SavePokemon = () => {
           variant="outline"
           colorScheme="red"
           mr=".25em"
+          data-cy="cancel-button"
         >
           Cancel
         </Button>
@@ -37,9 +39,12 @@ export const SavePokemon = () => {
           ml=".25em"
           isDisabled={!nickName}
           onClick={() => {
-            handleSavePokemon({ ...pokemon, nickName });
-            onCloseCatchPokemonModal();
+            handleSavePokemon(
+              { ...pokemon, nickName },
+              onCloseCatchPokemonModal
+            );
           }}
+          data-cy="save-pokemon-button"
         >
           Save
         </Button>

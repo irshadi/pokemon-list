@@ -34,6 +34,7 @@ export const PokemonTypeChips = ({ type }) => {
       justify="center"
       borderRadius="full"
       mx=".25em"
+      data-cy="pokemon-type-chips"
     >
       <Text
         color="white"
