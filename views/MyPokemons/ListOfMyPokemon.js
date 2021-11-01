@@ -16,6 +16,7 @@ export const ListOfMyPokemons = () => {
         "repeat(2, 1fr)",
         "repeat(3, 1fr)"
       ]}
+      data-cy="my-pokemons-lists"
     >
       {pokemons.map((props, index) => {
         return (

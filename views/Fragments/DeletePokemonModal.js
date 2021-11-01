@@ -33,6 +33,7 @@ export const DeletePokemonModal = ({
           variant="transparent"
           colorScheme="grey"
           onClick={props.onClose}
+          data-cy="release-pokemon-cancel-button"
         >
           Cancel
         </Button>
@@ -41,6 +42,7 @@ export const DeletePokemonModal = ({
           onClick={
             isDeletingAll ? clearAllPokemon : () => handleDeletePokemon(index)
           }
+          data-cy="release-pokemon-release-button"
         >
           Release
         </Button>
