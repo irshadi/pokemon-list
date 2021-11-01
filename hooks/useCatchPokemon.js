@@ -18,8 +18,6 @@ export const useCatchPokemon = name => {
   const [message, _setMessage] = React.useState([]);
   const [errorMessage, _setErrorMessage] = React.useState("");
 
-  console.log(message, "<< MESSAGE HOOKS");
-
   const {
     isOpen: isCatchPokemonModalOpen,
     onToggle: onToggleCatchPokemonModal,
@@ -56,7 +54,7 @@ export const useCatchPokemon = name => {
         _setPhase(CATCH_POKEMON_PHASE.CATCH_POKEMON);
         _setMessage(message => {
           const copyMessage = [...message];
-          copyMessage.push(`Trainer use pokeball.`);
+          copyMessage.push();
           return copyMessage;
         });
       }, 2000);
@@ -71,7 +69,7 @@ export const useCatchPokemon = name => {
         _setPhase(CATCH_POKEMON_PHASE.SUCCESS_CATCH_POKEMON);
         _setMessage(message => {
           const copyMessage = [...message];
-          message.push(`${name} catched successfully !`);
+          copyMessage.push(`${name} catched successfully !`);
           return copyMessage;
         });
         resolve();
@@ -81,13 +79,13 @@ export const useCatchPokemon = name => {
 
   const huntPokemon = async () => {
     const probability = Math.random();
+    _setMessage(message => {
+      const copyMessage = [...message];
+      copyMessage.push(`Looking for ${name}...`);
+      return copyMessage;
+    });
 
     try {
-      _setMessage(message => {
-        const copyMessage = [...message];
-        message.push(`Looking for ${name}...`);
-        return copyMessage;
-      });
       await Promise.all([
         _findPokemon(probability),
         _catchPokemon(probability)
