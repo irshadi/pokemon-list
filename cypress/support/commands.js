@@ -7,22 +7,6 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("searchPokemon", (pokemonName, { select = false }) => {
   cy.get('input[data-cy="search-pokemon-input"]')
@@ -40,6 +24,12 @@ Cypress.Commands.add("searchPokemon", (pokemonName, { select = false }) => {
       `${Cypress.config().baseUrl}/pokemon_details/${pokemonName}`
     );
   }
+});
+
+Cypress.Commands.add("huntPokemon", () => {
+  cy.get('div[data-cy="pokemon-details-wrapper"]').within(() => {
+    cy.get('button[data-cy="pokemon-details-catch-pokemon-button"]').click();
+  });
 });
 
 Cypress.Commands.add("tryCatchPokemon", pokemonName => {
@@ -66,4 +56,24 @@ Cypress.Commands.add("tryCatchPokemon", pokemonName => {
       return;
     }
   });
+});
+
+Cypress.Commands.add("savePokemon", nickname => {
+  cy.get('section[data-cy="catch-pokemon-modal"]')
+    .as("catchPokemonModal")
+    .within(() => {
+      cy.get('button[data-cy="save-pokemon-button"]').click();
+      cy.get('input[data-cy="pokemon-nickname-input"]').type(nickname);
+      cy.get('button[data-cy="save-pokemon-button"]').click();
+    });
+
+  // Toast fired
+  cy.get('li[class="chakra-toast"]').contains(
+    `Successfully catched and saved ${nickname}.`
+  );
+});
+
+Cypress.Commands.add("toastCalled", message => {
+  // Toast fired
+  cy.get('li[class="chakra-toast"]').contains(message);
 });

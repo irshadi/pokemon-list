@@ -174,9 +174,7 @@ describe("Pokemon Details Page - Details", () => {
     });
 
     // Toast fired
-    cy.get('li[class="chakra-toast"]').contains(
-      "Successfully catched and saved Monaco."
-    );
+    cy.toastCalled("Successfully catched and saved Monaco.");
   });
 
   it("Should be able to show error on saving pokemon with existing nickname", () => {
@@ -220,7 +218,7 @@ describe("Pokemon Details Page - Details", () => {
     });
 
     // Toast Error
-    cy.get('li[class="chakra-toast"]').contains(
+    cy.toastCalled(
       "Pokemon with nickname: Monaco is already exist. Please give another nickname."
     );
   });

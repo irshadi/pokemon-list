@@ -17,7 +17,7 @@ export const DeletePokemonModal = ({
       <ModalBody>
         <Text color="system.grey" fontWeight="500" fontSize="lg">
           Are you sure you want to release
-          {isDeletingAll ? "all of your catched pokemon" : nickName} ?
+          {isDeletingAll ? " all of your catched pokemon" : ` ${nickName}`} ?
         </Text>
         {!isDeletingAll && (
           <Text color="system.grey" fontSize="md">
