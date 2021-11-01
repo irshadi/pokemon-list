@@ -90,6 +90,12 @@ export const useUserPokemon = () => {
       localStorage.getItem(POKEMON_STORAGE_CONFIG.MY_POKEMON)
     );
 
+    const hasSavedPokemon = pokemons?.length;
+
+    if (!hasSavedPokemon) {
+      return;
+    }
+
     setPokemons(pokemons);
   }, [setPokemons]);
 
