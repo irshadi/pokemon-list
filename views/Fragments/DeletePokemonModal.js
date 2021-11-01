@@ -39,9 +39,14 @@ export const DeletePokemonModal = ({
         </Button>
         <Button
           colorScheme="red"
-          onClick={
-            isDeletingAll ? clearAllPokemon : () => handleDeletePokemon(index)
-          }
+          onClick={() => {
+            if (isDeletingAll) {
+              clearAllPokemon();
+            } else {
+              handleDeletePokemon(index);
+            }
+            props.onClose();
+          }}
           data-cy="release-pokemon-release-button"
         >
           Release
