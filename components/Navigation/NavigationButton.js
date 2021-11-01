@@ -9,7 +9,7 @@ export const NavigationButton = ({
   isSelected
 }) => {
   return (
-    <Link as={_Link} href={url}>
+    <Link as={_Link} href={url} data-cy="navigation-bar-link">
       <Flex
         h="inherit"
         variant="transparent"
@@ -19,6 +19,7 @@ export const NavigationButton = ({
         rounded="full"
         justify="center"
         px={["3.5", "2em"]}
+        cursor="pointer"
         textAlign="center"
         _hover={{
           opacity: 0.75

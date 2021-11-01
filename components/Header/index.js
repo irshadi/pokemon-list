@@ -13,6 +13,7 @@ export const Header = ({ ...props }) => {
       left="0"
       right="0"
       marginX="auto"
+      data-cy="header-bar"
       {...props}
     >
       <Image
@@ -21,6 +22,7 @@ export const Header = ({ ...props }) => {
         p=".5em"
         ml="1em"
         objectFit="contain"
+        data-cy="app-icon"
       />
     </Flex>
   );

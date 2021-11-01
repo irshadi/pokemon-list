@@ -38,6 +38,7 @@ export const NavigationBar = ({ ...props }) => {
       justify="center"
       pb=".5em"
       px=".75em"
+      data-cy="navigation-bar"
       {...props}
     >
       <Flex
