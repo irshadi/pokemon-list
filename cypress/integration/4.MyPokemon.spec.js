@@ -76,7 +76,7 @@ describe("My Pokemon Page", () => {
     cy.get('section[data-cy="pokemon-card-modal"]')
       .should("exist")
       .within(() => {
-        cy.contains("Are you sure you want to release Useless");
+        cy.contains("Are you sure you want to release Port Moresby");
         cy.get('button[data-cy="release-pokemon-cancel-button"]').should(
           "be.enabled"
         );
