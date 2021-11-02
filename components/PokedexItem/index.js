@@ -7,14 +7,26 @@ import {
   Heading,
   Button,
   Skeleton,
-  SkeletonCircle,
-  SkeletonText
+  SkeletonCircle
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { generateId } from "../../helper";
+import { useUserPokemonContext } from "../../context/userPokemon";
 
 export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
   const { push } = useRouter();
+  const { pokemons } = useUserPokemonContext();
+
+  const countOwnedPokemon = () => {
+    const owned = pokemons.reduce((acc, { name: _name }) => {
+      if (_name === name) {
+        acc += 1;
+      }
+      return acc;
+    }, 0);
+
+    return `You owned ${owned} ${name}`;
+  };
 
   const handleClickPokemon = () =>
     push(
@@ -63,7 +75,7 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
         <Flex w="80%" align="center">
           <Box w="100%" px="1.5em" textAlign="start">
             <Text
-              fontSize="1em"
+              fontSize=".75em"
               fontWeight="800"
               color="system.light-grey"
               data-cy="pokedex-item-pokemon-id"
@@ -73,12 +85,15 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
 
             <Heading
               textTransform="capitalize"
-              fontSize="1.5em"
+              fontSize="1.25em"
               color="system.grey"
               data-cy="pokedex-item-pokemon-name"
             >
               {name}
             </Heading>
+            <Text fontSize="xs" fontWeight="600" fontColor="system.grey">
+              {countOwnedPokemon()}
+            </Text>
           </Box>
           <Image
             src={artwork}
