@@ -92,7 +92,7 @@ export const PokedexItem = ({ id, name, image, artwork, isLoading }) => {
               {name}
             </Heading>
             <Text fontSize="xs" fontWeight="600" fontColor="system.grey">
-              {countOwnedPokemon()}
+              {name && countOwnedPokemon()}
             </Text>
           </Box>
           <Image
